@@ -1,0 +1,58 @@
+virtual vps
+show ip 
+ip (192.168.100.1/24)
+set pcname (pc-1)
+save
+ping 
+
+-----------------SWITCH---------------------
+hardware
+user in switch 
+
+In switch there are there mode
+first is user mode its indicates  ---------------------- > 
+second  is privilege its indicates ----------------------#
+third is config or glabal its indicates ---SWITCH_CONFIG #  
+
+
+> user -------------------------------------
+# privilege   -->  	enable 
+			show ip interface brief 
+			show interface fastethernet __
+  shows changes ------> show running-config 
+  save config   ------> write memory
+  delete config ------> write erase
+   reboot ------------> reload	
+   mac---------------->	show mac address-table	
+
+
+
+------------------------------------------------
+		
+Switch(config)# global ---> Configure terminal (conf t)
+hostname (name)
+interface Ethernet 0/0 
+shutdown
+no shutdown 
+do 
+
+
+VLAN()-------------------------------------------
+4094
+access only one vlan
+trunk multiply vlan
+vlan 20 
+name (vlan name )
+interface ethernet 0/0
+switchport mode access
+switchport access (vlan 10)
+exit 
+do show vlan b
+
+interface range ethernet 0/2-4
+
+interface range ethernet 0/1,ethernet 0/3
+no vlan 20 
+default interface range ethernet 0/2-3
+default interface range ethernet 0/1,ethernet 0/3
+
