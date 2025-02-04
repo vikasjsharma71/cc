@@ -37,7 +37,7 @@ no shutdown
 do 
 
 
-VLAN()-------------------------------------------
+VLAN(commands)------------------------------------------------------------------------------------------------------------------------------------------------------
 4094
 access only one vlan
 trunk multiply vlan
@@ -55,4 +55,11 @@ interface range ethernet 0/1,ethernet 0/3
 no vlan 20 
 default interface range ethernet 0/2-3
 default interface range ethernet 0/1,ethernet 0/3
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+switch send  bpdu (Bridge Protocol Data Units) packet to identify switchs in the network( packets of information that switches exchange to communicate with each other in a network)
+switch share mac address table  with other switchs in same ip 
+
 
