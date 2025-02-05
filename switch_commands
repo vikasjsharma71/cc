@@ -57,10 +57,24 @@ default interface range ethernet 0/2-3
 default interface range ethernet 0/1,ethernet 0/3
 
 
+TRUNK
+trunking method ONLY FOR CISCO  (isl Interswitch link protocol) 30 btyes 1990 limited vlan encapsulation (1000)
+method OPEN SOURCE IEEE -(DOT1Q  (802.1q) )				4  bytes 1998 				  4094
+The Institute of Electrical and Electronics Engineers (IEEE)
+-------------------------------
+interface ethernet 0/0
+switchport trunk encapsulation dot1q
+switchport mode trunk
+do show interface trunk 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 switch send  bpdu (Bridge Protocol Data Units) packet to identify switchs in the network( packets of information that switches exchange to communicate with each other in a network)
-switch share mac address table  with other switchs in same ip 
+switch share mac address table  with other switchs in same ip
+
+
+
+
+
 
 
 
