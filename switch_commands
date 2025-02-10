@@ -39,8 +39,8 @@ do
 
 VLAN(commands)------------------------------------------------------------------------------------------------------------------------------------------------------
 4094
-access only one vlan
-trunk multiply vlan
+access only one vlan(its not carry tag)
+trunk multiply vlan  (encapsulation its carry with him tag)
 vlan 20 
 name (vlan name )
 interface ethernet 0/0
@@ -66,6 +66,33 @@ interface ethernet 0/0
 switchport trunk encapsulation dot1q
 switchport mode trunk
 do show interface trunk 
+
+
+
+
+
+
+VTP(vlan trunking protocol )cisco---------------------------------------------
+
+VTP server
+VTP client
+
+
+-------------------------------------------------
+
+
+vtp mode server
+vtp domain ccn 
+vtp password ccn@123
+
+vtp mode client 
+vtp domain  ccn
+vtp password ccn@123
+
+
+
+
+
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 switch send  bpdu (Bridge Protocol Data Units) packet to identify switchs in the network( packets of information that switches exchange to communicate with each other in a network)
