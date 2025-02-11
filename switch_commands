@@ -85,9 +85,44 @@ vtp mode server
 vtp domain ccn 
 vtp password ccn@123
 
+
 vtp mode client 
 vtp domain  ccn
 vtp password ccn@123
+
+
+do show vtp status 
+
+vtp transparent (manually create vlan)
+vtp domain ccn
+vtp password ccn@123
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+------------------------------------------------------------
+DTP (DYNAMIC TRUNKNG PROTOCOL)
+auto : passive port ( opposite to desirable ye nhi puch ta hai  )
+desirable :  active port  (it will go to ask which method do u using /konsa method use kar rahe ho bhai )
+
+
+interface ethernet 0/0
+switchport trunk encapsulation negotiate
+switchport mode dynamic (auto /desirable) desirable
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 
 
 
