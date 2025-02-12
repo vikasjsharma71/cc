@@ -114,7 +114,27 @@ switchport mode dynamic (auto /desirable) desirable
 
 -----------------------------------------------------------
 
+----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
 
+CDP (cisco discovery protocol)(CISCO )only network devices 
+
+
+link layer discovery protocol LLDP (IEEE)only network devices 
+
+both run on same time cdp & lldp
+
+cdp advertisement  packet
+lldp advertisement  packet
+
+
+show cdp neighbors
+show lldp neighbors
+cdp run 
+no cdp run
+lldp run
+no lldp run
+-------------------------------------------------------------
 
 
 
