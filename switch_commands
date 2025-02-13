@@ -1,19 +1,21 @@
-virtual vps
+virtual 
 show ip 
+
 ip (192.168.100.1/24)
+
 set pcname (pc-1)
+
 save
 ping 
 
 -----------------SWITCH---------------------
+---------------------------------------------
+switch send  bpdu packet to identify switchs in the network
+switch share mac address table  with other switchs. 
+---------------------------------------------------------
+
 hardware
 user in switch 
-
-In switch there are there mode
-first is user mode its indicates  ---------------------- > 
-second  is privilege its indicates ----------------------#
-third is config or glabal its indicates ---SWITCH_CONFIG #  
-
 
 > user -------------------------------------
 # privilege   -->  	enable 
@@ -37,10 +39,12 @@ no shutdown
 do 
 
 
-VLAN(commands)------------------------------------------------------------------------------------------------------------------------------------------------------
+VLAN()-------------------------------------------
 4094
-access only one vlan(its not carry tag)
-trunk multiply vlan  (encapsulation its carry with him tag)
+access only one vlan its ( )
+trunk multiply vlan  (encapsulation ) 
+
+commands 
 vlan 20 
 name (vlan name )
 interface ethernet 0/0
@@ -57,18 +61,17 @@ default interface range ethernet 0/2-3
 default interface range ethernet 0/1,ethernet 0/3
 
 
-TRUNK
-trunking method ONLY FOR CISCO  (isl Interswitch link protocol) 30 btyes 1990 limited vlan encapsulation (1000)
+
+TRUNK-------------------------------------------
+Trunking method ONLY FOR CISCO  (isl Interswitch link protocol) 30 btyes 1990 limited vlan encapsulation (1000)
 method OPEN SOURCE IEEE -(DOT1Q  (802.1q) )				4  bytes 1998 				  4094
 The Institute of Electrical and Electronics Engineers (IEEE)
+
 -------------------------------
-interface ethernet 0/0
-switchport trunk encapsulation dot1q
-switchport mode trunk
+interface ethernet 0/0 
+switchport trunk encapsulation dot1q 
+switchport mode trunk 
 do show interface trunk 
-
-
-
 
 
 
@@ -85,18 +88,18 @@ vtp mode server
 vtp domain ccn 
 vtp password ccn@123
 
-
 vtp mode client 
 vtp domain  ccn
 vtp password ccn@123
 
-
 do show vtp status 
 
 vtp transparent (manually create vlan)
+vtp mode transparent
 vtp domain ccn
 vtp password ccn@123
-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 ------------------------------------------------------------
 DTP (DYNAMIC TRUNKNG PROTOCOL)
@@ -109,23 +112,21 @@ switchport trunk encapsulation negotiate
 switchport mode dynamic (auto /desirable) desirable
 
 
-
-------------------------------------------------------------------------------------------------------------------------------------------------------
-
------------------------------------------------------------
-
 ----------------------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
 
 CDP (cisco discovery protocol)(CISCO )only network devices 
 
 
-link layer discovery protocol LLDP (IEEE)only network devices 
+link layer discovery protocol LLDP (IEEE 802.1AB) only network devices 
 
 both run on same time cdp & lldp
 
-cdp advertisement  packet
-lldp advertisement  packet
+default time
+cdp advertisement  packet    timer 60s   holdtime 180s 3min  to remove that data 
+lldp advertisement  packet   timer 30s   holdtime 120s 2min  to remove that data
+
+
 
 
 show cdp neighbors
@@ -134,7 +135,46 @@ cdp run
 no cdp run
 lldp run
 no lldp run
--------------------------------------------------------------
+
+
+jitna adv timer hai ussay jada hona chaiye holdtime
+
+cdp timer ? 5-254
+cdp timer 100
+cdp holdtime 200
+
+
+lldp timer ? 5-65534
+lldp timer 100
+lldp holdtime 200
+
+
+----------------------------------------------------------------------------------------------------------------------------------------
+IMPORTANT 
+ETHER-CHANNEL 
+is use too increase the speed . using combine interface 
+high to low = bottom neck
+https://media.geeksforgeeks.org/wp-content/uploads/ethe1r.png
+
+RULES OF MAKING ETHER-CHANNEL 
+
+1 BOTH SIDE CONFIG ETHER-CHANNEL 
+
+2 SW TO SER /SW TO SW/ SW TO R / R TO R 
+
+3 PORT-CHANNEL-->MULTI PORT COMBINE   PROCESS NAME (PAGP)Port Aggregation Protocol(CISCO ) //(LACP)Link Aggregation Control Protocol (IEEE)
+
+4 SAME TYPE OF INTERFACE (GI TO GI /FA TO FA)
+
+5 BOTTLE NECK (high to low  LOW TO HIGHT)
+
+6 PAGP TO PAGP || LACP TO LACP 
+
+7 PAGP MAX 8 INTERFACE || LACP MAX 16 INTERFACE 
+
+8 PAGP 8 ACTIVE PORT  ||  LACP 8 ACTIVE 8 STAND BY (BACKUP)
+
+9 PORT CHANNEL MAX 128 LACP & PAGP 
 
 
 
@@ -149,9 +189,6 @@ no lldp run
 
 
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------
-switch send  bpdu (Bridge Protocol Data Units) packet to identify switchs in the network( packets of information that switches exchange to communicate with each other in a network)
-switch share mac address table  with other switchs in same ip
 
 
 
@@ -160,15 +197,37 @@ switch share mac address table  with other switchs in same ip
 
 
 
------------------------------------------
-hardware config router 
--------------------------------
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------
+hardware 
+router config command 
+------------------------------------------------
 en 
 config t 
-interface gigabitethernt 0/1
-no shutdown 
+interface gigabitethernet 0/
 ip address 200.45.45.1 255.255.255.240
-go to privilage mode 
-write memory 
+no shutdown
+write memory
 
 
