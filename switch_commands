@@ -158,6 +158,9 @@ https://media.geeksforgeeks.org/wp-content/uploads/ethe1r.png
 
 RULES OF MAKING ETHER-CHANNEL 
 
+MAX port channel in cisco & IEEE 128 
+IEEE 802.3AD LACP
+
 1 BOTH SIDE CONFIG ETHER-CHANNEL 
 
 2 SW TO SER /SW TO SW/ SW TO R / R TO R 
@@ -176,13 +179,28 @@ RULES OF MAKING ETHER-CHANNEL
 
 9 PORT CHANNEL MAX 128 LACP & PAGP 
 
+10 down by itself if its find opposite   down
+
+LACP METHOD = ACTIVE / PASSIVE
+PAGP METHOD = AUTO / DESIRABLE
+--------------------------------CONFIG------------------------------------
+
+en 
+show ip interface ethernet b 
+config t 
+interface ethernet 0/0 || interface range ethernet 0/0, ethernet 0/1 
+
+channel-group 1  mode  ACTIVE  . (max 255)
+EXIT
+
+do show interface port-channel 1
+do show etherchannel  summary
 
 
-
-
-
-
-
+TRUNK 
+interface port-channel  1 
+switchport trunk encapsulation dot.
+switchport mode trunk
 
 
 
