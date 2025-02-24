@@ -203,7 +203,56 @@ switchport trunk encapsulation dot.
 switchport mode trunk
 
 
+---------------------------------------------------------------------------------------------------------------------------------------------
+IVR 
 
+interface range fa 0/0 
+no shutdown 
+ip routing 
+interface vlan 200 
+ip address 192.168.0.1 255.255.255.0
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+STP SPANING TREE PROTOCOL
+--------------------------------------
+STORTCUT
+STAGE 1 MAI ROOT BRIDGE SELECTION HOTA HAI ELECTION VIA 1st ELECTION MAI STP PRIORITY 32768+VLAN  2nd election mai mac address 
+-------------------------------------------------------------------------------------------------------------------------------
+stage 1 main switch----->-root bridge (RB)   sw 2 rb   ==>root bridge
+1st election for root brudge rb--->  lowest value stp priority  32768 + vlan no100 (32768+100=32868)
+2nd election mac address lowest mac address values to win (switch have base mac address compare  stp )
+show version 
+MAC
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10A
+11B
+12C
+13D
+14E
+15F
+0000 = 0000
+00D0 = 00130
+000C = 00012
+
+STAGE 2 
+STAGE KONSA KONSA PORT CHALU RAHEGA WHICH PORT WILL BE UP 
+
+ROOT BRIDGE  designated port FORWARD DATA
+root port rp-fw  forwarding 
+
+STAGE 2nd END 
+
+DP PORT AND ROOT PORT MILNE K BAAD KHATAM STAGE 2 
+----------------------------------------
+STAGE 3nd 
 
 
 
