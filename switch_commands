@@ -244,7 +244,7 @@ MAC
 00D0 = 00130
 000C = 00012
 
-STAGE 2 )root port kon banega (
+STAGE 2 )root port kon banega (   COST ) 
 STAGE KONSA KONSA PORT CHALU RAHEGA WHICH PORT WILL BE UP 
 
 ROOT BRIDGE  designated port FORWARD DATA
@@ -254,9 +254,25 @@ STAGE 2nd END
 
 DP PORT AND ROOT PORT MILNE K BAAD KHATAM STAGE 2 
 ----------------------------------------
-STAGE 3nd 
 
 
+STAGE 3nd BLOCK PORT /ALT
+KONSA KONSA PORT FREE HAI ABHI 
+
+SAME CONCEPT 
+STP PRI LOWEST 
+BASE MAC LOWEST 
+
+BLOCK JO HAR JATA HA
+
+COMMAND 
+
+HOW TO SET ROOT BRIDGE MANUALLLY 
+SPANNING-TREE VLAN 1 PRIORITY 100  ENTER 
+ERROR 
+
+
+---------------------------------------------------------------------------------------
 
 
 
