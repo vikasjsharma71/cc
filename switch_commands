@@ -216,11 +216,13 @@ ip address 192.168.0.1 255.255.255.0
 STP SPANING TREE PROTOCOL
 --------------------------------------
 STORTCUT
-STAGE 1 MAI ROOT BRIDGE SELECTION HOTA HAI ELECTION VIA 1st ELECTION MAI STP PRIORITY 32768+VLAN  2nd election mai mac address 
+STAGE 1 MAI ROOT BRIDGE SELECTION HOTA HAI ELECTION VIA 1st ELECTION MAI STP PRIORITY 32768+VLAN  2nd election base mac address 
 -------------------------------------------------------------------------------------------------------------------------------
 stage 1 main switch----->-root bridge (RB)   sw 2 rb   ==>root bridge
 1st election for root brudge rb--->  lowest value stp priority  32768 + vlan no100 (32768+100=32868)
 2nd election mac address lowest mac address values to win (switch have base mac address compare  stp )
+root bridge sab packet root bridge pe jayegay  (all packet goes to rb)
+dp jo port by default chalu raheta hai wo hai dp 
 show version 
 MAC
 1
@@ -242,12 +244,12 @@ MAC
 00D0 = 00130
 000C = 00012
 
-STAGE 2 
+STAGE 2 )root port kon banega (
 STAGE KONSA KONSA PORT CHALU RAHEGA WHICH PORT WILL BE UP 
 
 ROOT BRIDGE  designated port FORWARD DATA
 root port rp-fw  forwarding 
-
+cost calculated kar k root port kon banega decide  kiya jata ta hai 
 STAGE 2nd END 
 
 DP PORT AND ROOT PORT MILNE K BAAD KHATAM STAGE 2 
