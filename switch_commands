@@ -213,8 +213,19 @@ interface vlan 200
 ip address 192.168.0.1 255.255.255.0
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
-STP SPANING TREE PROTOCOL
+STP SPANING TREE PROTOCOL   INVENTED BY (RADIA PERLMAN ) OPEN SOURCE 
+CISCO STP 802.1D SPANNING TREE PROTOCOL
+IEEE  802.1W RSTP RAPID SPANNING TREE PROTOCOL 
 --------------------------------------
+
+
+
+
+BPDU EVERY 2 SEC SHARE NON-changeable 
+
+BPDU DATA SIZE 8 BYTES 
+6 MAC 2  STP PRIORITY
+
 STORTCUT
 STAGE 1 MAI ROOT BRIDGE SELECTION HOTA HAI ELECTION VIA 1st ELECTION MAI STP PRIORITY 32768+VLAN  2nd election base mac address 
 -------------------------------------------------------------------------------------------------------------------------------
@@ -258,6 +269,9 @@ DP PORT AND ROOT PORT MILNE K BAAD KHATAM STAGE 2
 
 STAGE 3nd BLOCK PORT /ALT
 KONSA KONSA PORT FREE HAI ABHI 
+dono port useless  hoga tho election hoga 
+agar kuch kaam nhi hai tho block kardo 
+
 
 SAME CONCEPT 
 STP PRI LOWEST 
@@ -270,6 +284,33 @@ COMMAND
 HOW TO SET ROOT BRIDGE MANUALLLY 
 SPANNING-TREE VLAN 1 PRIORITY 100  ENTER 
 ERROR 
+
+stp port contorl 
+5 stage 
+1 disable     bydefault no  connetion 
+2 block       2s  block for  2 sec wait 
+3 listening   15s only bpdu packet 
+4 learning    15s  wait for bpdu packet  accetp bpdu  after that elctione 
+5 forwarding  20s   result port chalu hoga ye 
+ 50s
+
+cisco device port fast
+interface fasternet 0/2
+spanning-tree portfast
+
+
+RSTP IEEE
+1 DISCARD      2sec
+2 LEARNING     15s
+3 FORWARDING   5s - 15s
+
+
+
+
+
+
+
+
 
 
 ---------------------------------------------------------------------------------------
