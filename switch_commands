@@ -10,7 +10,7 @@ ping
 
 -----------------SWITCH---------------------
 ---------------------------------------------
-switch send  bpdu packet to identify switchs in the network
+switch send  bpdu packet to identify switchs in the network--Bridge Protocol Data Unit
 switch share mac address table  with other switchs. 
 ---------------------------------------------------------
 
@@ -41,7 +41,7 @@ do
 
 VLAN()-------------------------------------------
 4094
-access only one vlan its ( )
+access only one vlan its ( )   In a network switch, an "access port" is configured to carry traffic for only one VLAN, while a "trunk port" can carry traffic for multiple VLANs simultaneously
 trunk multiply vlan  (encapsulation ) 
 
 commands 
@@ -63,7 +63,7 @@ default interface range ethernet 0/1,ethernet 0/3
 
 
 TRUNK-------------------------------------------
-Trunking method ONLY FOR CISCO  (isl Interswitch link protocol) 30 btyes 1990 limited vlan encapsulation (1000)
+Trunking method ONLY FOR CISCO  (isl Inter switch link protocol) 30 btyes 1990 limited vlan encapsulation (1000)
 method OPEN SOURCE IEEE -(DOT1Q  (802.1q) )				4  bytes 1998 				  4094
 The Institute of Electrical and Electronics Engineers (IEEE)
 
@@ -75,13 +75,13 @@ do show interface trunk
 
 
 
-VTP(vlan trunking protocol )cisco---------------------------------------------
+VTP(vlan trunking protocol )cisco---------------------------------------------------------------------------------------------------
 
 VTP server
 VTP client
 
 
--------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------
 
 
 vtp mode server
@@ -101,7 +101,7 @@ vtp password ccn@123
 
 
 
-------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
 DTP (DYNAMIC TRUNKNG PROTOCOL)
 auto : passive port ( opposite to desirable ye nhi puch ta hai  )
 desirable :  active port  (it will go to ask which method do u using /konsa method use kar rahe ho bhai )
@@ -211,6 +211,7 @@ no shutdown
 ip routing 
 interface vlan 200 
 ip address 192.168.0.1 255.255.255.0
+
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 STP SPANING TREE PROTOCOL   INVENTED BY (RADIA PERLMAN ) OPEN SOURCE 
