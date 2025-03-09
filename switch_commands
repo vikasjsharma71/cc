@@ -348,7 +348,7 @@ DYNAMIC ROUTING PROTOCOL
 RIP (ROUTING INFO PROTOCOL )-----> OP 
 EIGRP(Enhanced Interior Gateway Routing Protoco ) --->CISCO 
 OSPF(Open Shortest Path First) ---->OP 
-
+-----------------------------------------------------------------------------------------------------EIGRP 
 EIGRP(Enhanced Interior Gateway Routing Protoco ) PROTOCOL NO 88  CISCO  --->
 2.IGRP FIRST CISCO ROUTING PROTOCOL
 3. INDENPENDENT PROTOCOL SELF CREATE PACKET & SHARE IT ROUTER TO ROUTER (IANA =88 ) 
@@ -362,7 +362,7 @@ EIGRP(Enhanced Interior Gateway Routing Protoco ) PROTOCOL NO 88  CISCO  --->
 NEABOUR TABLE TOPOLOGY TABLE ROUTING TABLE 
 
 ELECTION ROUTER
-AFTER SET IP IT CREATE ITS OWN ROUTER ID 
+AFTER SET IP IT CREATE ITS OWN ROUTER ID  
 ---ROUTER ID--- HIGHEST IP WILL BECOME ROUTER ID 
 HIGHEST ROUTER ID WILL SEND FIRST EIGRP HELLO PACKET  
 
@@ -434,10 +434,13 @@ EXIT
 SHOW IP ROUTE  
 SHOW IP EIGRP NEIGHBORS
 ---------------------------------------------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------RIP -------------------------------------------------------
 RIP MATRIX HOP COUNT FOR ROUTE FINDIND  
 HOP LIMITE 16
 0 - 15 = 16  
+MULTICAST 224.0.0.9 
+
+
 
 
 
@@ -449,6 +452,106 @@ HOP LIMITE 16
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------OSPF OPEN SHORTEST PATH FIRST----------------------------------------------------------------
+
+
+---------------------------------------------------------------------------------------------CONFIG----------------------------------------------------------------------------
+SHOW IP ROUTE
+R1
+INTERFACE FA 0/0
+IP ADDRESS 192.168.10.254 255.255.255.0
+
+SHOW IP ROUTE EMPTYY
+ROUTER OPSF 100      <----------------PROCESS ID  IT JUST A NUMBER   
+
+NETWORK 192.168.10.0 0.0.0.255 AREA 1  (ITS A NUMBER SAME AS EIGRP (AS)  )
+NETWORK 192.168.12.0 0.0.0.255 AREA 1 
+NETWORK 192.168.15.0 0.0.0.255 AREA 1
+EXIT
+
+R2 
+ROUTER OSPF 200
+NETWORK 192.168.12.0 0.0.0.255 AREA 1
+NETWORK 192.168.23.0 0.0.0.255 AREA 1 
+
+FOR REMOVING 
+NO NETWORK 192.168.23.0 0.0.0.255 AREA 1 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+OSPF OPEN SHORTEST PATH FIRST   ROUTE
+
+1.OPEN SOURCE 
+2.NO HOP LIMITE
+3.PROTOCOL NO 89 
+4.DEVELOPER BY DIJKSTRA ALGO 3DSGER WYBE DIJKSTRA
+5.AD 110 (KONSA CHALGA WO ISPE SAY HOTA HAI)  
+6.METRIX ONLY BANDWIDTH SPEED 
+7.MULTICAST 224.0.0.5       224.0.0.6
+8.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
