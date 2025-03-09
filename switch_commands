@@ -382,18 +382,48 @@ THIRD ROUTING TABLE UPDATE
 EIGRP HELLO PACKET IN EVERY 5S 
 HOLD TIME 		15S
 
+INCREMENTAL MEAN UPDATE THAT PARTICULAR CHANGES WILL ADDDED TO THATT ROUTING TABLE NOT THE WHOLE TABLE 
+TRIGGER--> UPDATE INSTANT UPDATE BEFORE 5S IF UPADTE IS HAPPEND   
+
+METRIC FOR BEST ROUTE FIND 
+EIGRP MATIX 
+
+5 MATRIX VALUE FOR EIGRP 
+
+K1 =bandwidth (SPEED ) SHOW INTerfaces FastEthernet 0/1
+K2 =load (TRAFFIC ) SHOW INTerfaces FastEthernet 0/1
+K3 =delay( TIME TO PASS  KITNA TIME LAG RAHA HAI USSKO  ) 
+K4 =reliability ( STABILITY  ) HOW TO TRUST -->  100 PACKET TO 100 PACKET REPLY   SHOW INTerfaces FastEthernet 0/1
+K5 = Maximum Transmission Unit (MTU)  1500 BYTES (FRAME SIZE)
+
+BANDWIDTH & DELAY 
+FORMULA : EIGRP COST = (TOTAL BANDWITDY + TOTAL DELAY) * 256  ---> 1000+22 =1022*256 = 261632
+TOTAL BW = 10 RAISE TO 8 /MIN BW       100000000/100000 = 1000
+TOTAL DL = SUMOFALL DLY / 10           100+10+100+10=220 = 220/10 =22
+HOPE LIMITED 256
+
+-------------------------------------------------
+TABLE						|
+ETHE 10MB = 10000KB DLY 1000 USEC		|
+FA 100MB  = 100000KB  DLY 100 USEC		|
+GIG 1GB   = 1000MB = 1000000KB DLY 10 USEC 	|
+-------------------------------------------------
+
+
 
 
 DUAL 
 TIME 
-TABLE 
-MULTICAST 224.0.0.10
-TRIGGER/INCREMENTAL 
+TABLE hello time 5s  holdtime 15s
+MULTICAST  EIGRP 224.0.0.10  RIP 224.0.0.9
+TRIGGER/INCREMENTAL  --> NOT THE WHOLE TABLE IT ADDDED IN UPDATEDE IN THAT ROUTING TABLE  TRIGGER--> UPDATE INSTANT UPDATE BEFORE 5S IF UPADTE IS HAPPEND    
 AUTHENTICATION 
 AD EIGRP =90 |OSPF =110 |RIP =120   |STATIC AD =1 
 ROUTER ID 
 AS 
+
 ------------------------------------------------------------------------CONFIG---------------------------------------------------------------
+
 CONFIG T
 ROUTER EIGRP 10    <--------------( AS )AUTONOMOUS SYSTEM 1-65535 MATCH WITH OTHER ROUTET FOR ROUTING  
 ADVERTISTING NETWORK MEAN ADDING NETWORK 
@@ -401,9 +431,13 @@ NETWORK 192.168.10.0  0.0.0.255    <--- NETWORK NID     <---WILD CARD BITS
 255.255.255.255 - 255.255.255.0= 0.0.0.255     
 EXIT
 
-
+SHOW IP ROUTE  
 SHOW IP EIGRP NEIGHBORS
---------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------
+RIP MATRIX HOP COUNT FOR ROUTE FINDIND  
+HOP LIMITE 16
+0 - 15 = 16  
 
 
 
