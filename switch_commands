@@ -466,8 +466,6 @@ R1
 INTERFACE FA 0/0
 IP ADDRESS 192.168.10.254 255.255.255.0
 
-TO SEE NEIGHBOR TABLE   
-SHOW IP OSPF NEIGHBOR 
 
 SHOW IP ROUTE EMPTYY
 ROUTER OPSF 100      <----------------PROCESS ID  IT JUST A NUMBER   
@@ -483,9 +481,37 @@ NETWORK 192.168.12.0 0.0.0.255 AREA 1
 NETWORK 192.168.23.0 0.0.0.255 AREA 1 
 
 FOR REMOVING 
-NO NETWORK 192.168.23.0 0.0.0.255 AREA 1 
+>NO NETWORK 192.168.23.0 0.0.0.255 AREA 1
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+SHOW IP OSPF INTER FA 0/0   
+
+TO SEE NEIGHBOR TABLE   
+>SHOW IP OSPF NEIGHBOR 
+
+TO CHANGE THE NETWORK TYPE 
+>INTERFACE FA 0/0 
+>IP OSPF NEWTORK POINT-TO-POINT (IP OSPF NETWORK ?)
+
+TOO WIPE INTERFACE
+>DEFAULT INTERFACE FA 0/0
+
+ROUTER PRIO CHANGE 
+>INTER FA 0/0 
+>IP OSPF PRI 10
+>DO SHOW IP INTER FA 0/0 
+
+TO MAKE IT DR REBOOT THE ALL THE CONNETED ROUTER ELSE FOR OSPF RESET 
+>PRIVILAGE MODE 
+>CLEAR IP OSPF PROCESS 
+
+R1
+ROUTER OSPF 10 
+NET 192.168.50.0 0.0.0.255 AREA 0 
+R2
+ROUTER OSPF 10 
+NET 192.168.50.0 0.0.0.255 AREA 0 
+--Z----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 OSPF OPEN SHORTEST PATH FIRST   ROUTE
 
 1.OPEN SOURCE 
@@ -549,12 +575,33 @@ IP OSPF COST 65535
 FORMULA FOR FINDING BEST ROUTE LOWEST COST 
 OSPF COST = 10 raise to 8 / MIN BW     ETH 100000000/10000 = 10000
 FA 100000000/100000=1000
+-------------------------------------------------------------------------------------------------------------------------------------
+flooding 
+1 point to point  r to r 
+2 point to multipoint  serial cable middle switch 3 router 
+3 broadcast eth
 
+broadcast  network type  
+dr and bdr disignated router   ||  backup disignated router 
 
+for DR ELECTION 
+1.OSPF PRIORITY  (DEFAULT 1 HIGHEST PRIO WILL BECOME   ====> DR)
+2.RID ( HIGEST RID WILL BECOMER DP )
 
+HOW DR PREVENT FLOODING IN THE NETWORK 
 
+DR WILLL TELL DONT SHARE DIRECT DATA TO THE ROUTER (DR BOLEGA TUM SAB LOG APNA APNA NETWORK MUJHE BHEJO EK DUSRA KO NHI MAI KARTA HOON PARBHAND OR DR SIRF NETWORK PACKET BHEJTAHAI )
+ALL THE NETWORK  WILL GO TO  DR
+AFTER TAKING ALL THE NETWORK PACKET IN ONE BUNCH ANDD THEN DR WILL SEND THE PACKET TO THE AFTER ROUTER 
 
+BDR BACKUP INCASE DR FAIL THEN THE BDR WILL COME UP
+'
+BY DEFAULT IS ACCPET NETWORK TYPE BROADCAST 
 
+---------------------------------------------------------------------------------------------------------------------
+BACKBONE AREA OR AREA 0 
+COMMON AREA 0 
+IT IS USED TO CONNECT TWO DIFFERNT AREA 1 AND AREA 2 USING AREA 0 
 
 
 
