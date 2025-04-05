@@ -646,6 +646,7 @@ REDISTRIBUTION CONFIG
 
 SHOW IP ROUTE 
 REDISTRIBUTION
+
 ROUTER EIGRP 200
 REDISTRIBUTION RIP METRIC BANDWITD DELAY RELAB LOAD MTU 10000 100 255 1 1500
 REDISTRIBUTION EIGRP 100 METRIC 10000 100 255 1 1500
@@ -661,6 +662,101 @@ ROUTER OSPF 20
 REDISTRIBUTION RIP SUBNETS 
 REDISTRIBUTION EIGRP 200 SUBNETS 
 REDISTRIBUTION OSPF 100 SUBNETS 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+PASSWORD RECOVERY
+
+ROUTER SAVE DATA IN NVRAM 
+STATUP CONFIG SAVE NVRAM 
+
+RUNNING-CONFIG SAVE TEMP RAM 
+-------------------------------------------------------------------------------------------------PASSWORD ONLY------------------------------------------------------------------------------------------------
+ROUTER PASSWORD SET 
+CONFIG 
+LINE CONSOLE 0  (0-3)
+LINE AUX 
+LINE VTY
+PASSWORD CISCO@123
+LOGIN
+
+NO PASSWORD 
+NO LOGIN
+
+---------------------------------------------------------------------------------------------------USERNAME---------------------------------------------------------------------------------------------------
+LINE CONSOLE 0 
+LOGIN LOCAL 
+EXIT
+CONFIG 
+USERNAME CISCO PRIVILEGE  15 PASSWORD CISSCO@123  				(0 LEAST ACCESS || 10 12 PRIVILEGE || 15 IS A ADMIN)  
+EXIT
+
+
+-------------------------------------------------------------------------------------------------ENABLE MODE PASSWORD SET----------------------------------------------------------------------------------- 
+PRIVILEGE MODE 
+
+ENABLE PASSWORD CISCO123
+NO ENABLE PASSWORD 
+
+FOR HARD ENCRYPTION 
+ENABLE SECRET CISCO@678
+
+------------------------------------------------------------------------------------------------HIDING  PASSWORD--------------------------------------------------------------------------------------------
+CONFIG 
+SERVICE PASSWORDD-ENCRYPTION 
+
+------------------------------------------------------------------------------------------------PASSWORD RECOVERY ROUTER----------------------------------------------------------------------------------
+START UP CONFIG  REGISTER NO OX2102 ALL CONFIG SAVE IN THIS FILE 
+SHOW VERSION 
+GO TO BOTTOM TO SEE REGISTER NUMBER 
+
+BACKUP REGISTER OX2142 EMPTY 
+
+
+
+
+----------------------------------------------------------------------------------------------CONFIG ROUTER---------------------------------------------------------------------------------------------------
+
+ROMAN MODE 
+BUTTON TURN OFF THEN ON 
+OS RUNNING WHEN IT SHOW # THEN PRESS   CTRL + PAUSE|BREAK KEY 
+
+ROMMON> confreg 0x2142
+ROMMON> reset
+
+ROUTER> en 
+ROUTER# SHOW STARTUP-CONFIG 
+ROUTER# COPY startup-config running-config
+
+CONFIG T 
+LINE CONSOLE 0 
+NO LOGIN LOCAL 
+EXIT
+NO ENABLE SECRET 
+EXIT
+WR MEM
+
+CONFIG 
+CONFIG-REGISTER 0X2102
+RELOAD
+SHOW VERSION
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------CONFIG SWITCH---------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
