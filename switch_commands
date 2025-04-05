@@ -716,7 +716,7 @@ BACKUP REGISTER OX2142 EMPTY
 
 
 
-----------------------------------------------------------------------------------------------CONFIG ROUTER---------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------CONFIG ROUTER PASSWORD RECOVERY-----------------------------------------------------------------------------
 
 ROMAN MODE 
 BUTTON TURN OFF THEN ON 
@@ -742,11 +742,62 @@ CONFIG-REGISTER 0X2102
 RELOAD
 SHOW VERSION
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-------------------------------------------------------------------------------------------CONFIG SWITCH---------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------CONFIG SWITCH   PASSWORD & RECOVERY---------------------------------------------------------------------------------------------------------
+FOR REMOVING VLAN DIRECTLY REMOVE VLAN.DAT FILE FROMM FLASH MEMORY
+SHOW FLASH:
+DELETE FLASH:FILE NAME
 
 
+EN
+CONFIG T
+LINE CONSOLE 0
+SPEED 9600
+THEN RECONNET -> SELECT BR 9600  			(CONFIG.TXT ----)
+SHOW FLASH:
 
 
+DELETE FLASH:CONFIG.TEXT.RENAMED (DELETE FLASH:FILE )
+
+CONFIG T
+LINE CONSOLE 0 
+LOGIN LOCAL 
+EXIT
+
+USERNAME CISCO PASSWORD CISCO@123
+
+ENABLE SECRET  CCN@456
+ENABLE PASSWORD CCN@456
+EXOT
+WR MEM
+SHOW FLAH:
+
+------------------------------------------------------------------------------------------------------------RECOVERY--------------------------------------------------------------------------------------
+MODIFY CONFIG.TEXT TO CONFIG.SOMETING (123)
+
+SWITCH ON OFF
+INTERRUPT WITHIN 5 SEC  :   PRESS MODE BUTTON ON SWITCH 
+SWITCH: flash_init
+SWITCH: dir flash:
+SWITCH: rename flash: config.text  flash: config.123
+SWITCH: dir flash:
+SWITCH: boot 
+
+
+SWITCH> EN 
+SWITCH# SHOW FLASH
+SWITCH# RENAME FLASH:CONFIG.123 FLASH:CONFIG.TEXT
+SWITCH# SHOW FLASH:
+SWITCH# COPY FLASH : CONFIG.TEXT RUNNING-CONFIG
+
+LINE CONSOLE 0 
+NO LOGIN LOCAL 
+NO ENABLE SECRET 
+EXIT
+WR MEM
+
+-----------------------------------------------------------------------------------------------------OS INSTALLATION ------------------------------------------------------------------------------------------
+
+IOS (INTERNETWORK OPERATION SYSTEM)
 
 
 
