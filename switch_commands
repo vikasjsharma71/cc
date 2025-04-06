@@ -685,6 +685,7 @@ NO PASSWORD
 NO LOGIN
 
 ---------------------------------------------------------------------------------------------------USERNAME---------------------------------------------------------------------------------------------------
+
 LINE CONSOLE 0 
 LOGIN LOCAL 
 EXIT
@@ -796,8 +797,35 @@ EXIT
 WR MEM
 
 -----------------------------------------------------------------------------------------------------OS INSTALLATION ------------------------------------------------------------------------------------------
+BACKUP PROCESS
 
 IOS (INTERNETWORK OPERATION SYSTEM)
+SHOW VERSION 
+CISCO OFFICIAL WEBSITE ( CISCO SOFTWARE DOWNLOAD )
+SHOW FLASH:
+TFTP SERVER (Trivial File Transfer Protocol) IT STORE ALL THE BACKUP FILE LIKE OS 
+TFTPD64 
+
+# COPY FLASH:tftp:
+copy bin  (paste)
+tftp address 192.168.200.1
+DONT CHANGE  THE NAME OF THE BIN  FILE  IT  CAN CORRUPT THE FILE
+
+
+TO COPY STARTUP-CONFIG
+# COPY STARTUP-CONFIG TFTP:
+192.168.200.1
+ENTER
+
+DELETING OS 
+DELETE FLASH:FILENAME
+COPY TFTP: FLASH:
+192.168.200.1
+FILENAME 
+
+COPY TFTF: RUNNING-CONFIG 
+
+
 
 
 
