@@ -825,14 +825,59 @@ FILENAME
 
 COPY TFTF: RUNNING-CONFIG 
 
+------------------------------------------------------------------------------------------ISO UPDATE SWITCH --------------------------------------------------------------------------------------------------
+ASSIGNING IP TO SWITCH 
+INTERFACE FASTETHERNET 0/0
+NO SWITCHPORT 
+IP ADDRESS 192.168.140.10 255.255.255.0
 
 
 
 
+SHOW FLASH:
+COPY FLASH: TFTP: 
+SOURCE_FILENAME=BIN 
+TFTF IP 
+ENTER
 
+COPY TFTP: FLASH:
+192.168.140.1
+FILENAME  COPY & PAST
+ENTER 
 
+COPY FLASH:CONFIG.TEXT RUNNING-CONFIG
+:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ROMMON MODE       ROUTER     
 
+CONNECT TO FIRST INTERFACE 
+INTERFACE 0/0 
 
+ALL IN CAPLOCK 
+IP_ADDRESS=(192.168.140.10)
+IP_SUBNET_MASK=(255.255.255.0)
+DEFAULT_GATEWAY=(192.168.140.1)
+TFTP_SERVER=(192.168.140.1)
+TFTP_FILE=(filename)
+tftpdnld ----->dnld (download)
+y
+RESET
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------SWITCH ROMMON MODE------------------------------------------------------------------------------------------------------------
+console cable 2kb/s
+SWITCH:?
+
+flash_init 
+dir flash:
+set BAUD 115200
+copy xmodem: flash:filename.bin
+then below step
+securt -->transfer-->send xmodem-->select file  
+
+to set the buadrate to 96000
+switch: boot
+config t 
+line console 0 
+speed 9600
 
 
 
