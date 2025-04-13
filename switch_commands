@@ -484,6 +484,7 @@ FOR REMOVING
 >NO NETWORK 192.168.23.0 0.0.0.255 AREA 1
 
 
+
 SHOW IP OSPF INTER FA 0/0   
 
 TO SEE NEIGHBOR TABLE   
@@ -879,17 +880,46 @@ config t
 line console 0 
 speed 9600
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------- SWITCH FOR VLAN ROS(ROUTER ON A STICK)---------------------------------------------------------------------------------------------------
+SWITCH 								|
+VLAN 								|
+TRUNK ON ROUTER INTERFACE 					|
+								|
+ROUTER 								|
+SUB-IF								|
+TRUNK DOT1Q							|
+IP ADDRESS							|
+----------------------------------------------------------------
 
+interface fastethernet 0/0
+no shutdownl
 
+interface fastethernet 0/0.1
+SUBIF# encapsulaton dot1Q 10 <---(VLAN N0)
+SUBIF# IP ADDRESS 192.168.100.254 255.255.255.0
+SUBIF# EXIT
 
+ESUBIF# INTERFACE FASTETHERNET 0/0.2
+SUBIF# ENCAPSULATION DOT1Q 20
+SUBIF# IP ADDRESS 192.168.200.254 255.255.255.0 
+SUBIF# EXIT
 
+SHOW IP ROUTE 
+INTERFACE 0/5
+SWITCHPORT TRUNK ENCAPSULATION DOT1Q
+SWITCHPORT MODE TRUNK
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------NAT----------------------------------------------------------------------------------------------------------
+DEFAULT ROUTING
+0.0.0.0 0.0.0.0 FA IP 
 
+BY DEFAULT ITS NOT ENABLE NAT 
 
-
-
-
-
+COMMON METHOD----------------------------------
+DYNAMIC PAT PORT ADDRESS TRANSLATION 			(MULTIPLY PRIVATE IP TO SINGLE PUBLIC NETWORK )
+STATIC NAT 
 
 
 
