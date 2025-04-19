@@ -911,15 +911,74 @@ SWITCHPORT TRUNK ENCAPSULATION DOT1Q
 SWITCHPORT MODE TRUNK
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
------------------------------------------------------------------------------------------------------NAT----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------NAT  (SHOW IP NAT TRANSLATIONS)----------------------------------------------------------------------------------------------------------
 DEFAULT ROUTING
 0.0.0.0 0.0.0.0 FA IP 
 
 BY DEFAULT ITS NOT ENABLE NAT 
 
 COMMON METHOD----------------------------------
-DYNAMIC PAT PORT ADDRESS TRANSLATION 			(MULTIPLY PRIVATE IP TO SINGLE PUBLIC NETWORK )
+DYNAMIC PAT PORT ADDRESS TRANSLATION 	UNIDIRECTIONAL UNDER SAY BAHAR PRI TO PUBLIC BUT BAHAR SAY UNDER NHAI HOTA 		PORT ADDRESS TRANSLATION(MULTIPLY PRIVATE IP TO SINGLE PUBLIC NETWORK )
+STATIC NAT 				BIDIRECTIONAL SINGLE PVT TO SINGLE PUBLIC IP 
+DYNAMIC NAT 				10 PVT 			10 PUB
+
+
+TO SEE  ROUTER PACKETS 
+DEBUG IP  ICMP 
+DEBUG IP PACKETS (TO SEE ALL THE TYPES OF PACKETS)
+
+UNDEBUG ALL 
+
+DYNAMIC PAT
+EDGE ROUTER 
+CONFIG T
+IP ACCESS-LIST STANDARD LAN-PC <--- LIST NAME 
+PERMIT 192.168.100.0 0.0.0.255
+EXIT
+
+POLICY
+IP NAT INSIDE SOURCE LIST LAN-PC ||<--LIST NAME||  INTERFACE ETHERNET 0/1 OVERLOAD
+
+EDGE ROUTER 
+INTERFACE ET 0/0
+IP NAT INSIDE 
+EXIT
+INTERFAE ETHERNET 0/1 
+IP NAT OUTSIDE 
+
+
+
+-----------------------------------------------------------------------------------------
 STATIC NAT 
+CONFIG T
+IP NAT INSIDE SOURCE STATIC (SINGLE IP)172.16.100.1 200.1.10.3
+
+------------------------------------------------------------------------------------------
+DYNAMIC NAT
+EDGE ROUTER 
+CONFIG T
+IP ACCESS-LIST STANDARD IS-LAN 
+PERMIT HOST 172.16.50.1 
+PERMIT HOST 172.16.50.2
+PERMIT HOST 172.16.50.3
+PERMIT HOST 172.16.50.4
+EXIT
+DO SHOW IP ACCESS-LISTS
+
+IP NAT POOL IS-PUB-IP 200.1.10.4 200.1.10.7 NETMASK 255.255.255.240
+IP NAT INSIDE SOURCE IS-LAN  POOL IS-PUB-IP 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
