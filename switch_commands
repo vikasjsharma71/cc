@@ -968,6 +968,8 @@ DO SHOW IP ACCESS-LISTS
 IP NAT POOL IS-PUB-IP 200.1.10.4 200.1.10.7 NETMASK 255.255.255.240
 IP NAT INSIDE SOURCE IS-LAN  POOL IS-PUB-IP 
 
+------------------------------------------------------------------------------------------------------
+IPV6 
 
 
 
@@ -980,19 +982,105 @@ IP NAT INSIDE SOURCE IS-LAN  POOL IS-PUB-IP
 
 
 
+GLOBAL PREFIX
+	|
+|-------------------|
+3	29 	16					16 	 64			
+IANA 	RIR	T1 ISP NIR(NATIOANL INTERNET REGISTRY)  SUBNET   HOST BITS
+|------------------------------------------------------------|
+			|
+	        SUBNET PREFIX
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+UNICAST ONE TO ONE 
+IPV6 			UNICAST									 MULTICAST  
+	1.GLOBAL UNICAST USING PUB IP TO PUB IP 						IPV6 FF00::1 NETWORK SINGLE HOST (END DEVICES) F000:0000:0000:0000:0000:0000:0000:0001
+	2.UNIQ /SITE LOACL PRI IP ONE TO ONE COMMUNICATION					     FF00::2 FOR ALL ROUTERS
+	 FC00::/7
+	 FD00::/7
+	3.LINK LOCAL 
+	 IPV4 169.254.0.0/16          APIPA FOR SETTING AUTOMATIC IP 
+	 IPV6 FE80::/10 	APIPA 
 
 
 
+IPV4 127.0.0.0/8 LOOPBACK 
+IPV6 ::1/128 LOOPBACK
+
+UNSPECIFIC 
+IPV4  0.0.0.0/0 
+IPV6  ::/0 
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+IPV4 										IPV6 
+STATIC 										STATIC
+DHCP										DHCP  STATEFULL 
+APIPA										SLAAC STATELESS ADDRESS AUTO-CONFIG	EUI-64 EXTENDED UNIQUE IDENTIFIER 
+										LINK LOCAL FE80::/10
 
 
 
+EUI -64
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+98BD:806D:AE02 MAC
+FFFE
+98BD:80FF:FE6D:AE02:    64 BITS
+1001 1000
+1001 1010 		7TH BIT FLIP 
+9ABD:80FF:FE6D:AE02
 
 
+------------------------------------------------------------------------------------------CONFIG IPV6 -------------------------------------------------------------------------------------------------------------------------------
+
+CONFIG T
+INTERFACE ETHER 0/0 
+NO SHUTDOWN 
+IPV6 ENABLE 
+IPV6 ADDRESS A100::100/64
+
+DO SHOW IPV6 INT B
+
+			GATEWAY
 
 
+------------------------------------------------------
+SLAAC 
+INTERFACE FASTETHER 0/0
+NO SHUTDOWN 
+IPV6 ADDRESS A100::/64 EUI-64
+EXIT
+IPV6 UNICAST-ROUTING 
 
--------------------------------------------------------------------------------------------------------
+IPV6 ROUTING 
+-----------------------------------------------------
+ROUTE  STAIIC 
+IPV6 ROUTE B100::/64  F100::20 
+----------------------------------------------------
+ROUTE DEFAULT 
+IPV6 ROUTE ::/0 F100::200
+--------------------------------------------------
+DYNAMIC ROUTING 
+ROUTE OSPF
+R0
+IPV6 ROUTER OSPF 100
+ROUTER-ID 10.10.10.10
+EXIT
+INTEFACE F 0/0
+IPV6 OSPF 100 AREA 1
+INTERFACE FA 0/1 
+IPV6 OSPFT 100 AREA 1
 
+R1
+
+IPV6 ROUTER OSP 200
+ROUTER-ID 200.1.1.1
+EXIT
+INTERFACE FA 0/0
+IPV6 OSPF 200 AREA 1
+INTERFACE FA 0/1
+IPV6 OSPF 200 AREA 1
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
