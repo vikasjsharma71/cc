@@ -1163,22 +1163,132 @@ AFTER THEN THE SESSION WILL BE ESTABLISH
 
 
 
+------------------------------------------------------------------------------------------OSI LAYEY(OPEN SYSTEM INTER-CONNETION)--------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------REFER JPG -----------------------------------------------------------------------------------------------
+
+
+DARPA DEVELOPED OSI MODEL 
+DARPA HANDOVER OSI MODEL TO ISO  (INTERNATIONAL ORGANIZATION FOR STANDARDIZATION)
+
+
+WEBSITE MEAN A PAGE 
+WEB APPLICATION MULTIPLY TASK  LIKE AMAZON 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SENDER
+-------------------------------------------------------------------------------------------------
+L7 APPLICATION LAYER										|
+PDU = PROTOCOL DATA UNIT == DATA								|
+APDU = APPLICATION PROTOCOL DATA UNIT								|
+-------------------------------------------------------------------------------------------------
+L6 PRESENTATION LAYER 										|
+FILE FORMAT -EXE MIS TXT MP4 MP3 PDF XLSX JPG XLSX JPG JPEG PNG MKV BAT				|
+ENCRYPTION & DECRYPTION  									|
+COMPRESSION  & DECOMPRESSION  (REVERSIBLE  & IRREVERSIBLE  LIKE WHATSAPP IMG)			|	
+PDU = PROTOCOL DATA UNIT									|
+PPDU = PRESENTATION PROTOCOL DATA UNIT 								|
+-------------------------------------------------------------------------------------------------
+L5 SESSION LAYER 										|
+GENERATE ESTABLISH  MAINTAIN TERMINATE SESSION 							|
+PDU = PROTOCOL DATA UNIT 									|	
+SPDU = SESSION PROTOCOL DATA UNIT  								|
+L2TP = Layer 2 Tunneling Protocol								|
+PPTP = Point-to-Point Tunneling Protocol)							|
+-------------------------------------------------------------------------------------------------
+L4 TRANSPORT 											|
+PROVIDE END TO END CONNECTIVITY 								|
+TCP = TRANSMISSION CONTROL PROTOCOL								|
+UDP = USER DATAGRAM PROTOCOL									|	
+*ERROR CORRECTION										|
+PDU = 								SEGMENT 			|
+HEADER => TAG CARRY SPORT TO DPORT 								|
+-------------------------------------------------------------------------------------------------
+L3 NETWORK 	(ROUTER L3 SWITCH)								|
+PROVIDE PATH TO THE DATA									|
+IPV4 IPV6 OSPF EIGRP RIP ARP  									|
+PDU = 								PACKET 				|	
+HEADER => SA DA 										|
+-------------------------------------------------------------------------------------------------
+L2 DATA LINK	L2 SWITCH AP 									|
+MAC Media Access Control address								|
+LLC LOGICAL LINK CONTROL 									|
+PDU = 								FRAME 				|
+HEADER => SEQUENC NUMBER TO FRAMES 								|
+SMAC DMAC											|
+-------------------------------------------------------------------------------------------------
+L1 PHYSICAL 											|
+INTERFACE (PORT)  POWER CABLE HUB REPEATER NIC CARD						|
+PDU =								BITS				|
+-------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+RECEIVER 
+-------------------------------------------------------------------------------------------------
+L7 APPLICATION LAYER										|
+PDU = PROTOCOL DATA UNIT == DATA								|
+APDU = APPLICATION PROTOCOL DATA UNIT								|
+-------------------------------------------------------------------------------------------------
+L6 PRESENTATION LAYER 										|
+FILE FORMAT -EXE MIS TXT MP4 MP3 PDF XLSX JPG XLSX JPG JPEG PNG MKV BAT				|
+*FORMAT IDENTIFIER										|
+ENCRYPTION & DECRYPTION  									|
+COMPRESSION  & DECOMPRESSION  (REVERSIBLE  & IRREVERSIBLE  LIKE WHATSAPP IMG)			|	
+PDU = PROTOCOL DATA UNIT									|
+PPDU = PRESENTATION PROTOCOL DATA UNIT 								|
+-------------------------------------------------------------------------------------------------
+L5 SESSION LAYER 										|
+GENERATE ESTABLISH  MAINTAIN TERMINATE SESSION 							|
+PDU = PROTOCOL DATA UNIT 									|	
+SPDU = SESSION PROTOCOL DATA UNIT 								|
+*TERMINATED SESSION 										|
+L2TP = Layer 2 Tunneling Protocol								|
+PPTP = Point-to-Point Tunneling Protocol)							|
+-------------------------------------------------------------------------------------------------
+L4 TRANSPORT 											|
+PROVIDE END TO END CONNECTIVITY 								|
+TCP = TRANSMISSION CONTROL PROTOCOL								|
+UDP = USER DATAGRAM PROTOCOL									|
+*REMOVE HEADER  ||COLLECITON ALL SEGMENT THEN CONVERT TO DATA					|
+PDU = 								SEGMENT 			|
+HEADER => TAG CARRY SPORT TO DPORT 								|
+-------------------------------------------------------------------------------------------------
+L3 NETWORK 											|
+PROVIDE PATH TO THE DATA									|
+IPV4 IPV6 OSPF EIGRP RIP ARP 									|
+*REMOVE SA AND DA										|
+PDU = 								PACKET 				|	
+HEADER => SA DA 										|
+-------------------------------------------------------------------------------------------------
+L2 DATA LINK											|
+MAC Media Access Control address								|
+LLC LOGICAL LINK CONTROL 									|
+*ERROR DETECTION FRAME MISSING 									|
+*REMOVE MAC 											|
+PDU = 								FRAME 				|
+HEADER => SEQUENC NUMBER TO FRAMES 								|
+SMAC DMAC											|
+-------------------------------------------------------------------------------------------------
+L1 PHYSICAL 											|
+INTERFACE (PORT)  POWER CABLE HUB REPEATER NIC CARD						|
+PDU =								BITS				|
+-------------------------------------------------------------------------------------------------
 
 
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+												TCP/IP MODEL REFER TO TCP_IP IMG
+TCP/IP HAVE  4 LAYER 
+												-------------------------
+												|   APPLICATION LAYER 	 |
+												|------------------------|
+												|   TRANSPORT LAYER	 |
+												|------------------------|
+												|   INTERNET LAYER	 |
+												|------------------------|
+												|  NETWORK ACCESS LAYER  |
+												-------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
