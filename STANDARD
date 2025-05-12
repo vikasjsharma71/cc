@@ -1,0 +1,32 @@
+
+TRUNKING 
+CISCO : ISL INTER SWITCH LINK PROTOCOL  30 BYTES   1990 LIMITE VLAN 
+IEEE : dot.1q                           4 BYTES    4094 LIMITE VLAN 
+
+CDP : CICO DISCOVERY PROTOCOL 
+LLDP : LINK LAYER DISCOVERY PROTOCOL 802.1AB
+
+ETHER CHANNEL 
+PAGP CISCO : PORT AGGREGATION PROTOCOL            8 ACTIVE PORT  MAX CHANNEL 128       | AUTO/DESIRABLE
+LACP : LINK AGGREGATION CONTROL PROTOCOL 802. 3AD 8 ACITVE 8 STAND BY  MAX CHANNEL 128 |ACTIVE/PASSIVE
+
+
+STP INVENTED BY RADIA PERLMAN
+CISCO :STP 802.1D
+5 stage 
+1 disable     bydefault no  connetion 
+2 block       2s  block for  2 sec wait 
+3 listening   15s only bpdu packet 
+4 learning    15s  wait for bpdu packet  accetp bpdu  after that elctione 
+5 forwarding  20s   result port chalu hoga ye 
+ 50s
+
+IEEE  :802.1W RSTP 
+RSTP IEEE
+1 DISCARD      2sec
+2 LEARNING     15s
+3 FORWARDING   5s - 15s
+
+-------------------------------------------------SWITCH END---------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+EIGRP  PROTOCOL NO 88 CISCO 
