@@ -158,7 +158,7 @@ https://media.geeksforgeeks.org/wp-content/uploads/ethe1r.png
 
 RULES OF MAKING ETHER-CHANNEL 
 
-MAX port channel in cisco & IEEE 128 
+MAX port channel in PAGP CISCO & IEEE 128 
 IEEE 802.3AD LACP
 
 1 BOTH SIDE CONFIG ETHER-CHANNEL 
