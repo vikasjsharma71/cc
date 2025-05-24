@@ -338,8 +338,8 @@ IP ADDRESS 192.168.70.254
 INTERFACE ETHERNET 0/1
 NO SHUTDOWN 
 IP ADDRESS 200.20.20.254
-
-
+ip route 192.168.1.0 255.255.255.0 192.168.10.1
+ip route <network-address> <subnet-mask> <next-hop-ip-address>
 
 _________________________________________________________________________________DYNAMIC ROUTING _________________________________
 SHOW IP ROUTE --->
@@ -1289,9 +1289,50 @@ TCP/IP HAVE  4 LAYER
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------PORT OPENING --------------------------------------------------------------------------------------------
+
+TELNET IP 
+SSH -L CISCO IP 
+   (LOGIN) 
+
+GUI
+TELNET IP 80
+TELNET IP 443
+
+--------------------------------------------------------------------------------------------OPENING PORT -------------------------------------------------------------------------------------
+ROUTER ACCESS TYPE 
+CONSOLE 
+VTY    CISCO ACCESS 5 MAX SINGLE TIME 
+AUX 
+
+---------------------------------------------------------------------------------------------CLI
+LOGIN LOCAL FOR USERNAME AND PASSOWRD
+LOGIN FOR ONLY PASSOWRD
+
+LINE VTY 0 (0-4)ITS DEFINE THAT HOW MANY CAN ACCESS THIS AT A TIME 
+TRANSPORT INPUT TELNET 
+TRANSPORT INPUT SSH
+TRANSPORT INPUT TELNET SSH
+PASSWORD CISCO@123
+LOGIN 
+EXIT
+LINE VTY 0 
+NO PASSWORD
+LOGIN LOCAL 
+EXIT
+USERNAME CISCO PRIVILEGE 15 PASSWORD CISCO@123
+
+
+KEY GENERATE COMMAND 
+CONFIG T 
+CRYPTO KEY GENERATE RSA  GENERAL-KEYS LABEL MYKEY MODULUS 2048
 
 
 
+-----------------------------------------------------------------------------------------------GUI
+IP HTTP SERVER 
+IP HTTP AUTHENTICATION LOCAL 
+IP HTTP SECURE-SERVER
 
 
 
