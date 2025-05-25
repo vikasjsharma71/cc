@@ -1334,11 +1334,48 @@ IP HTTP SERVER
 IP HTTP AUTHENTICATION LOCAL 
 IP HTTP SECURE-SERVER
 
+--------------------------------------------------------------------------------------------------------ARP-------------------------------------------------------------------------------------------------------
+ARP -A 
+--------------------------ARP REQ
+SA 
+SMAC 
+DA 
+DMAC ff:ff:ff:ff:ff:ff
+ARP REQ
 
+------------------------ARP RES
+SA 
+SMAC 
+DA 
+DMAC M1
+ARP RES
+------------------------TYPE OF ARP 
+REVERSE ARP 	USING MAC ADDRESS TO FETCH IP ADDRESS   --x--
+GRATUITOUS ARP  
+PROXY ARP 
 
+------------------------GRATUTIOUS ARP REQ  IT USED IN WHEN NEW DEVICE CONNECTED MODIFIED 
+SA 
+SMAC 
+DA 
+DMAC ff:ff:ff:ff:ff:ff
+GARP REQ 
+-----------------------GRATUTIOUS ARP RES
+SA 
+SMAC
+DA 
+DMAC 
+GARP RES
+-------------------------PROXY ARP  IN PROXY IT ACUTALLY REPLACE THE DATA TO ROUTER 
+SA 
+SMAC 
+SPORT RANDOM 
+DA 
+DMAC
+DPORT 443
+TCP SYN
 
-
-
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
