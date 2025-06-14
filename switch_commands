@@ -1302,7 +1302,7 @@ TELNET IP 443
 --------------------------------------------------------------------------------------------OPENING PORT -------------------------------------------------------------------------------------
 ROUTER ACCESS TYPE 
 CONSOLE 
-VTY    CISCO ACCESS 5 MAX SINGLE TIME 
+VTY    CISCO ACCESS 5 MAX SINGLE TIME  ( VIRTUAL TELETYPE A VIRTUAL TERMINAL)
 AUX 
 
 ---------------------------------------------------------------------------------------------CLI
@@ -1500,6 +1500,85 @@ LOGGING CONSOLE
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------ACL ACCESS CONTROL LIST---------------------------------------------------------------------------------------
+ASA BACIC  FTD ADVANCE  CISCO FIREWALL
+PALO ALTO CHECKPOINT 
+
+TYPE OF LIST IN ROUTER 
+STD  (IN STD LIST ONLY SOURCE CAN BE CONTROL  ITS A BASIC LIST SO WE DON'T USE THIS MUCH) FULL INTERNET ACCESS  
+EXTENDED (SOURCE AND DESITINATION CONTROL  )
+PERMIT 
+DENY 
+
+DEFAULT LIST IN ROUTER 
+DENY ANY ANY 
+
+
+
+---------------------------------------------------------------------------------------------------------------STD LIST CONFIG------------------------------------------------------------------------------------- 
+IP ACCESS-LIST STANDARD (LAN-WAN) <----NAME  (DEFAULT  DENY ANY ANY )
+PERMIT HOST <---(FOR SINGLE IP )
+PERMIT  192.168.100.0   0.0.0.255   (NID) <-----(FOR A RANGE OF IP )
+
+PERMIT HOST 192.168.100.1 
+DO SHOW IP ACCESS-LIST 
+
+
+-----------------------------------------
+IP ACCESS-LIST STANDARAD LAN-WAN 
+PERMIT HOST  192.168.100.0 
+EXIT
+INTERFACE ETHERNET 0/0 
+IP ACCESS-GROUP LAN-WAN IN 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------EXTENDED ACL-------------------------------------------------------------------------------------------------------
+IP ACCESS-LIST EXTENDED (IN-OUT )<---------NAME 				IN-BOUND
+PERMIT IP HOST 192.168.100.1 ANY 		(FULL ACCESS)
+PERMIT ICMP HOST 192.168.100.1 HOST 200.20.20.1 ECHO
+PERMIT EIGRP ANY ANY 				EIGRP
+PERMIT OSPT ANY ANY 				OSPF
+PERMIT UDP ANY ANY EQ 520			RIP 
+PERMIT UDP ANY 8.8.8.8  EQ 53			DNS
+1 PERMIT TCP HOST  192.168.100.2 HOST 200.20.20.1 EQ 443  
+PERMIT HOST 172.16.100.1 ANY ACK					SYN_ACK 
+PERMIT TCP HOST 192.168.100.1 HOST 200.20.20.2 EQ 23  			PROTOCOL 
+EXIT
+INTERFACE ETHERNET 0/0 
+IP ACCESS-GROUP IN-OUT IN  
+EXIT
+
+										OUT-BOUND
+IP ACCESS-LIST EXTENDED OUT-IN 
+PERMIT TCP ANY HOST SER-IP 172.16.100.1 EQ 443				SYN
+PERMIT ICMP HOST 200.20.20.1 192.168.100.0 0.0.0.255 ECHO-REPLY		
+
+
+INTERFACE ETHERNET 0/1
+IP ACCESS-GROUP OUT-IN  OUT
 
 
 
