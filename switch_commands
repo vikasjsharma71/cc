@@ -1410,6 +1410,11 @@ PC ----
 INT ETH 0/0 
 MO SHUT
 IP ADDRESS DHCP
+----------------------------------------
+WHEN THE NETWORK IS IN DEFFERNET NETWORK 
+IP HELPER-ADDRESS IP 
+
+-----------------------------------------
 
 DHCP 
 IP DHCP POOL LAN-PC 
