@@ -1,1 +1,104 @@
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ACL
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+NUMBER BASE ACL 
+NAME   BASE ACL 
+OBJECT BASE ACL (PC IP CHANGE IN 24 HOURS SAMJHA KYA WE DON'T USE IP ) EXTENDED
+TIME   BASE ACL (TIME BASE ACL WILL BE LIKE ACCESS ONLY AT THIS TIME ) EXTENDED
+
+STANDARD ACL  <1-99>  ADD<1300-1999>
+EXTENDED ACL <100-199> ADD<2000-2699>
+
+---------------------------------------------------------------------------------------
+
+
+STATELESS 
+NAME BASE ACL ---------------ACCESS LIST 
+IP ACCESS-LIST EXTENDED   LAN-WAN
+PERMIT UDP ANY ANY EQ 520 
+PERMIT EIGRP ANY ANY 
+PERMIT OSPF ANY ANY 
+PERMIT UDP ANY 8.8.8.8 EQ 53
+PERMIT ICMP HOST 192.168.100.1 HOST GOOGLE.COM ECHO 
+PERMIT TCP HOST 192.168.100.1 HOST WIKI.COM  EQ 23  (TELNET SSH HTTPS HTTP)
+PERMIT TCP 172.16.100.0 0.0.0.255 ANY ACK 
+EXIT 
+
+IMPLEMENT
+INTERFACE 0/0 
+IP ACCESS-GROUP LAN-WAN IN 
+EXIT
+----------------------------------------------------------------------------------------
+DO SHOW IP ACCESS-LIST
+---------------------------------------------------------------------------------------
+NUMBER BASE ACL -----------------ACCESS LIST
+IP ACCESS-LIST EXTENDED 110
+PERMIT TCP ANY 172.16.100.0 0.0.0.255 EQ 80 443
+PERMIT ICMP ANY 192.168.100.0 0.0.0.255 ECHO-REPLY
+
+EXIT
+
+IMPLEMENT 
+INTEFERFACE 0/1
+IP ACCESS-GROUP 110 IN 
+EXIT
+----------------------------------------------------------------------------------------
+WILD CARD BIT 
+EIGRP 
+OSPF 
+ACCESS LIST 
+
+SUBNET MASK
+INTERFACE 
+OBJECT 
+
+OBJECT BASE ACL ----------------------------ACCESS LIST
+-------------------------------------------NETWORK OBJECT 
+OBJECT-GROUP NETWORK PC1 
+HOST 192.168.100.100
+EXIT 
+
+OBJECT-GROUP NETWORK PC2
+HOST 192.168.100.2 
+EXIT
+
+OBJECT-GROUP NETWORK GOOLE 
+HOST 200.20.20.1
+EXIT
+
+----------------------------------------SERVICE OBJECT 
+OBJECT-GROUP SERVICE PING 
+ICMP ECHO 
+EXIT
+OBJECT-GROUP SERVICE HTTPS
+TCP EQ 443
+EXIT
+
+IP ACCESS-LIST EXTENDED LAN-WAN 
+PERMIT OBJECT-GROUP PING OBJECT-GROUP PC2 OBJECT-GROUP GOOGLE 
+-------------------------------------------
+SHOW OBJECT-GROUP 
