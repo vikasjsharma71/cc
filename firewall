@@ -76,8 +76,8 @@ SUBNET MASK
 INTERFACE 
 OBJECT 
 
-OBJECT BASE ACL ----------------------------ACCESS LIST
--------------------------------------------NETWORK OBJECT 
+OBJECT BASE ACL ----------------------------ACCESS LIST-------------------
+-------------------------------------------NETWORK OBJECT ----------------
 OBJECT-GROUP NETWORK PC1 
 HOST 192.168.100.100
 EXIT 
@@ -90,7 +90,7 @@ OBJECT-GROUP NETWORK GOOLE
 HOST 200.20.20.1
 EXIT
 
-----------------------------------------SERVICE OBJECT 
+----------------------------------------SERVICE OBJECT --------------------
 OBJECT-GROUP SERVICE PING 
 ICMP ECHO 
 EXIT
@@ -100,5 +100,53 @@ EXIT
 
 IP ACCESS-LIST EXTENDED LAN-WAN 
 PERMIT OBJECT-GROUP PING OBJECT-GROUP PC2 OBJECT-GROUP GOOGLE 
--------------------------------------------
+------------------------------------------------------------------------------
 SHOW OBJECT-GROUP 
+
+------------------------------------------------------------------------------
+DAY 3
+------------------------------------------------------------------------------
+
+(TIME) BASE ACL 
+------------------------------------------------------------------------------
+IP ACCESS-LIST EXTENDED IN-OUT 
+EXIT
+OBJECT-GROUP NETWORK PC 1 
+HOST 192.168.100.1 
+EXIT
+OBJECT-GROUP NETWORK GOOGLE 
+HOST 200.20.20.1
+EXIT
+IP ACCESS-LIST EXTENDED IN-OUT 
+PERMIT ICMP OBJECT-GROUP PC1 OBJECT-GROUP GOOGLE ECHO 
+EXIT
+
+INTEFACE ETHERNET 0/0 
+IP ACCESS-GROUP IN-OUT IN D
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+(TIME) BASE ACL 
+------------------------------------------------------------------------------
+TIME-RANGE  OFFICE TIME  
+?
+PERIODIC ?
+PERIODIC WEEKDAYS 09:00 TO 18:00
+IP ACCESS-LIST EXTENDED IN-OUT
+PERMIT TCP OBJECT-GROUP PC-1 OBJECT-GROUP GOOGLE EQ 443  TIME-RANGE  OFFICE-TIME 
+EXIT
+
+
+------------------------------------------------------------------------------
+
+
+NAT 
+DYNAMIC NAT 
+DYNAMIC PAT 
+STATIC NAT 
+
+STATIC PAT 
+POLICY NAT 
+DESTINATION NAT 
+DYNAMIC PAT WITH CUSTOM IP 
+DYNAMIC PAT WITH PAT POOL 
+------------------------------------------------------------------------------
