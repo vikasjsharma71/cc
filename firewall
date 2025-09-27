@@ -153,6 +153,63 @@ DYNAMIC PAT WITH PAT POOL  ------> EASY
 ------------------------------------------------------------------------------
 ------------------------------------------------------------------------------
 
+ASA - CISCO ADAPTIVE SECURITY APPLICANCE
+CISCO PIX = FIRST FIREWALL OF CISCO HAVING BASIC SECURITY 
+
+CISCO ASA CISCO NEW BASIC SECURITY FIREWALL 
+CISCO FTD NGFW(NEXT GENERATION FIREWALL )
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+PIX                          -->              ASA                 ---->                                        CHECKPOINT   PALO ALTO  NGFW
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+ROUTING                                  ROUTING                                                               
+NAT                                      NAT
+ACL                                      ACL
+                                         URL --> STAIC 
+                                         MPF MODULAR POLICY FRAMEWORK (CONTROL CONNECTION  )
+                                         FAILOVER 
+                                         ACTIVE /ACTIVE 
+                                         ACTIVE/ STANDBY 
+
+X= NG-IPS
+---------------------------------------------------------------------------------------------------------
+5506-X                             5508-X                     5515-X              5505
+---------------------------------------------------------------------------------------------------------
+INTER GIG 8                       INTER GIG 8               INTEF GIG 8 
+1 CON                             1 CON                     1 CON
+1 MGMT                            1 MGMT                    1 MGMT
+1 USB                             1 USB                     2 USB
+                                  1 SSD                     1 SSD/HDD             FTD -OS 
+----------------------------------------------------------------------------------------------------------
+
+URL FILTERING DOMAIN BASED
+STAIC  - ONE TO ONE 
+DYNAMIC - MUTLI
+-------------------------------------------------------------------------
+UTM --> URL  --> IPS / IDS  --> ANTI VIRUS  URL --> CA CONTENT AWARNESS (FILE FORMATED ALLOW OR DENY )--> AVC (APPLICATION VISIBIILITY CONTROL)---> ANTI BOT --> EMAIL SECURITY  
+IPS IDS/UTM (UNIFIED THREAD MANGEMENT) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
