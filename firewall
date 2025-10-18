@@ -240,7 +240,7 @@ REDISTRIBUTE RIP SUBNET
 REDISTRIBUTE EIGRP 100 SUBNETS
 
 
------------------------------------------------------------------TO STOP THE ROUTING PACKET 
+-----------------------------------------------------------------TO STOP THE ROUTING PACKET FROM THE END DEVICES 
 ROUTER EIGRP 100
 PASSIVE-INTERFACE INTERFACE 0/0
 
@@ -305,6 +305,54 @@ RIP
 EIGRP 
 OSPF 
 ISP DEFAULT 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                                          CHECKPOINT NGFW WAS THE FIRST FIREWALL WHO INTRODUCE NEXT-GENERATION-FIREWALL 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+BASIC 
+ASA = IP  ROUTING NAT ACL STATEFULL FAILOVER URL STATIC MPF 
+UTM = ANTIVIRUS ANTISPAM ANTI BOT AVC CA USER ID URL DYNAMIC HTTPS INS  SANDBOX  
+
+
+----------------------------------------------------------------------------------------------DEPLOY---------------------------------------------------------------------------------------------------------------
+CHECKPOINT 5200
+GAIA OS R77 R78 R79 R80 (R81. STABLE VER [HOT FIX] )
+CLI/GUI 
+CLUSTER EXCEL ( BACKUP )
+chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.checkpoint.com/downloads/products/5400-security-gateway-datasheet.pdf
+
+GATEWAY = IP ROUTING 
+MANAGEMET = ACL NAT FEATU
+CLI  ACCESS
+PUT IP ON  MGMT PORT (IF MGMT PORT != DATA PORT== MGMT )
+DEFAULT ROUTING 
+
+GUI 
+DYNAMIC ROUTING 
+ACL
+NAT 
+BLD
+HARDWARE                  OPEN SERVER                 CLOUD
+5200                         GAIA                      
+5400     
+
+
+
+CONSOLE ACCESS CLI FOR IP 
+admin 
+admin123
+
+SHOW INTERFACE ETH4
+SET INTER ETH4 STATE ON 
+SET INTER ETH4 IPV4-ADDRESS 192.168.88.100 MASK-LENGTH 24 
+
+
+
+
+
+
 
 
 
