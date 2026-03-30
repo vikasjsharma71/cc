@@ -5,18 +5,20 @@ DO UNDEBUG
 DO DEBug IP RIp EVEnts 
 RIP V2 
 
-key chain (NAME) 
+key chain (IS-LAN) 
  key1 
-key-string (password) 
+key-string (CCN@123) 
 exit
 
-ip rip auth key-CHAIN (name)
+ip rip auth key-CHAIN (IS-LAN)
 ip rip autH mode md5
 
 
 OSPF AUTH
+INTERFACE ETHERNET 0/0-11
 IP  OSPF AUthentication Message-digest 
-IP OSPF MESSAGE-DIGEST-KEY 1 MD5 (PASSWORD)
+IP OSPF MESSAGE-DIGEST-KEY 1 MD5 (CCN@123)
+
 
 
 
