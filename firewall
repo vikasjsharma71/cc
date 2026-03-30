@@ -1,7 +1,22 @@
 
 
+---------------------------------------AUTH
+DO UNDEBUG 
+DO DEBug IP RIp EVEnts 
+RIP V2 
+
+key chain (NAME) 
+ key1 
+key-string (password) 
+exit
+
+ip rip auth key-CHAIN (name)
+ip rip autH mode md5
 
 
+OSPF AUTH
+IP  OSPF AUthentication Message-digest 
+IP OSPF MESSAGE-DIGEST-KEY 1 MD5 (PASSWORD)
 
 
 
