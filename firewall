@@ -325,7 +325,7 @@ ISP DEFAULT
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                                                                                          CHECKPOINT NGFW WAS THE FIRST FIREWALL WHO INTRODUCE NEXT-GENERATION-FIREWALL 
+                                                                                          CHECKPOINT NGFW WAS THE FIRST FIREWALL WHO INTRODUCE NEXT-GENERATION-FIREWALL (START )
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 BASIC 
@@ -382,13 +382,14 @@ SET INTER ETH4 IPV4-ADDRESS 192.168.88.100 MASK-LENGTH 24
 
 
 
-----------------------------------------------------------------------------NATD-20-----------------------------------------------
+----------------------------------------------------------------------------NATD-20------------------------------------------------------------------------------------
 TYPE OF NAT IN CHECKPOINT
 DYNAMIC PAT                  STATIC NAT                          STATIC PAT  
-INTERFACE                    POLICY NAT 
+INTERFACE                    POLICY NAT                          IT CHANGE THE PORT 23 == 83838 ALSO CALLED AS PORT FORWARDING 
 CUSTOME IP                   DEST NAT 
-PAT POOL 
-----------------------------------------------------------------------------------------------------------------------------------
+PAT POOL                     POLICY & DEST NAT 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+AUTO NAT WHEN WE DO NAT INSIDE OBJECT THAT IS AUTO NAT 
 TWO NAT METHODS (AUTO AND MANUAL) 
 WHEN WE DO A MANUAL NAT (MANAUL NAT FOR WEBSITE) FOLLOW THIS 
 MANUAL NAT --> GW ADD ARP PROXY OK --> CONSOLE--> GLOBAL PROPERTIES --> NAT --> MERGE ARP--> PUSH 
@@ -409,8 +410,118 @@ OPEN GATEWAY CP
 ADD ARP--> INTERFACE OUTSIDE --> (CONSOLE--> GLOBAL PROPERTIES --> NAT --> MERGE ARP--> PUSH  IF ALREADY DONNE DON'T DO IT )
 
 
-DESTINATION NAT
+DESTINATION NAT DI
 IN EVERY MANUAL NAT ALLWAYS DO ARP ADD ON THE GATEWAY
+
+DYNAMIC PAT 
+INTERFACE 
+CUSTOME IP 
+PAT POOL 
+
+STATIC PAT 
+ORIGNAL SOURCE =  (ANY )
+ORIGINAL DESTINATION =  PUBLIC IP OBJECT
+ORIGINAL SERVICE= OBJECT 3302() SERVICE OBJECT--> TCP -->TCP-MAP NAME -->  3302
+TRANSLATED DEST= PRIVITE IP   
+TRANSLATED SERVICE = 23
+PROXY ARP ADD 
+
+POLICY
+ANY PUBLIC IP TELNET-MAP  
+
+-------------------------------------------------------------------------------URL FILTERING 34-------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------HTTPS INSPECTION35-------------------------------------------
+*TURN ON HTTPS INSPECTION OTHERWISE AVC CA ANTR-VIRUS FILE SCANNING  NOT WORD DO IT FIRST AS PRIORITY ON THIS 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+BYPASS DATA LIKE BANK TO NOT TO INSPECT CP
+                        | NAME    | SOUR|DESTINATON| SER | CAT   | ACTION |  
+HTTPS INSPECTION SECTION| FINANCE | ANY |INTERNET  | HTTP| FINAC |BYPASS  |
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+*HTTPS INSPECTION HAVE TWO ACTION BYPASS AND INSPECT 
+BYPAASS USED WHEN WE DON'T WANT TO ALLOW CHECKPOINT TO INSPECT THAT TRAFFIC 
+INSPECT  WILL INSPECT ALL THE TRAFFIC 
+
+HTTPS INSPECTION   
+IT DECRP DATA AND ENCRPT IT TO SEE WHATS IN THE DATA 
+PUBLIC KEY WHEN SERVER SEND TO THE CLIENT ITS ACUTALLY TAKEN BY CP TO DECRPT THAT DATA AND ENCRP
+CP HAVE THE OWN PUB AND PRI KEY 
+CP SEND HIS PUBLIC KEY TO THE CLIENT TO ENCRP THE DATA 
+
+ACTIVATE HTTPS INSPECTION STEP 
+CP-GW DOUBLE CLICK HTTPS INSPECTION --> CREATE --> DOWNLAOD CERT 
+AND SHARE TO THE PCS THEN INSTALL IN --> TRUSTED ROOT CERTIFICATION AUTHORITIES -> LOCAL MACHIN OR CURRENT MACHINE 
+
+--------------------------------------------------------------------------------------------------------------|
+
+SNI = SERVER NAME INDICATER 
+FOR  MAKING URL FILTERING 2 POLICY SHOULD  HAVE TO  CREATE 1 IS MAIN POLICY 2ND INLINE LAYER 
+LAN-PC TO INTERNET | LAN-PC |  ANY | HTTP HTTPS | ACCEPT RIGHT CLICK ON THE DROPDOWN ARROW SELECT (INLINE LAYER ) ACTIVATE (URL FILTERIN AND CONTENT AWARENESS)
+PC  TO INTERTNET   | LAN-PC | ANY  | DOMAIN SELECT SPECIFY SERRVICE OR ALL | ACCPT | LOG |INSTALL
+DEFAULT CLEANUP RULE WILL BE CREATE 
+
+-------------------------------------------------------------------------------URL FIL/AVC/CA APPLICATION VISIBILITY CONTROL35--------------------------------------------------
+1.URL FILTERING--> (ALL FULL APP ACCESS)ACCESS TO A WEBSITE OR A APPLICATION 
+2.AVC-->(CONTROL APP) TO CONTROL THE APPLICATION EXAMPLE GOOGLE WE ALLLOW BUT GOOGLE ALSO HAVE MANY APPLICATON LIKE HANGOU MORE TO CONTROL INSIDE THE WEBSITE
+WHAT USER CAN DO ON THE WEBSITE 
+3.CA --> ( CHECK ALL DATA FILE FORMATE VERIFY .EXE .JPG .MP3 .BAT  AND BLOCK /ALLOW CONTROL ) 
+******IN CONTENT CERTIFICATE FILES TO ACCES THE HTTP HTTPS 
+
+URL FILTERING ====
+NAME   | SOUR   | DES | SERV  | ACTION                |CONTENT
+LAN-PC | LAN-PC | ANY | HTTPS | INLINE LAYER CLICK AVC| CA 
+NEW RULE BELOW THIS POLICY 
+PC1    | PC-1  | ANY  |FACEBOOK(SUB APPLICATION ) |
+
+URL |AVC| CA |HTTPS INSPECTION DONE  
+
+------------------------------------------------------------------------------- THREAT PREVATIONS36 ---------------------------------------------------------------------------
+
+IPS       =INTRUSION PREVENTION SYSTEM IT WILL BLOCK THE FILE  (SIGNATURE) VIRUS TROJAN WORM ETC
+IDS       =INTRUSION DETECTION SYSTEM  IT ONLY DETECT THE THREAT BY SIGNATURE 
+ANTIVIRUS =Antivirus software protects devices by scanning for and deleting malicious software (malware) like viruses, ransomware, and Trojans.
+ANTIBOT   =Anti-bot software detects and blocks automated, malicious traffic (e.g., spam, credential stuffing) from attacking websites and APIs.
+SANDBOX   =A sandbox is an isolated, secure, and controlled environment in computing used to test, run, or analyze software, files, or code without risking harm to the
+           host system, network, or production data
+VIRUS     = Viruses require a host file and human action (e.g., clicking a link) to activate and spread, infecting other files on the system.
+WORM      =Worms are self-contained malware that automatically replicate and spread across networks without needing a host file or user action. Both are harmful malware, 
+           but worms spread faster independently
+
+HTTPS INSPECTION SHOULD BE ON TO CAPTURE THE TRAFFIC 
+
+DAY 36
+LICENCE ACTIVATION 1:46
+
+CHECKPOINT --> LOGIN --> TRY PRODUCT--> PRODUCT EVALUTAIONN --> ALL IN ONE EVALUTAION --> USER CENNTER ACCOUNT --> 
+CREATE UC  ACCOUONT --> ASSSEST INFO --CREATE UC  ACCOUNT 
+
+CLI 
+COPY CPLIC 
+MAGMT 
+PAST  LICENCE 
+WEB 
+LICENCCE STATUS 
+OFFLINE ACTIVATION 
+NEW AND PAST IT 
+
+BACK TO THE EVALUTION LICENCE 
+ENTER GATEWAY IP 
+COPY AND REMOVE MODULE NAME
+AND PAST TO THE CLI 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
