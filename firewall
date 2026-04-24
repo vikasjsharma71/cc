@@ -1,6 +1,6 @@
 
 
----------------------------------------AUTH
+--------------------------------------------------------------------AUTH-------------------------------------------------------------------------------------------
 DO UNDEBUG 
 DO DEBug IP RIp EVEnts 
 RIP V2 
@@ -616,10 +616,13 @@ BACKUP --> CONFIG
 
 
 
-----------------------------------------------------------------PALO ALTO
-CONFIG 
-CONFIG SET DEVICE CONFIGURE SYSTEM IP-ADDRESS 192.168.188.100 NETMASK 255.255.255.0
+---------------------------------------------------------------------------PALO ALTO-----------------------------------------------------------------------------------
+CONFIG MODE
+SET DEVICECONFIGURE SYSTEM IP-ADDRESS 192.168.188.100 NETMASK 255.255.255.0
+SET DEVICECONFIG SYSTEM TYPE STATIC 
 COMMIT 
+
+PING SOURCE IP HOST IP 
 
 RDP
 HTTPS://PALOALTO(IP)
