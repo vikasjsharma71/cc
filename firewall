@@ -430,6 +430,10 @@ POLICY
 ANY PUBLIC IP TELNET-MAP  
 
 -------------------------------------------------------------------------------URL FILTERING 34-------------------------------------------------------------------------
+1.SET  DNS ON GATEWAY 
+2. DNS POLICY 
+3. BASIC POLICY PC 1 TO ANY HTTP
+3. NAT 
 
 -------------------------------------------------------------------------------------------------------------HTTPS INSPECTION35-------------------------------------------
 *TURN ON HTTPS INSPECTION OTHERWISE AVC CA ANTR-VIRUS FILE SCANNING  NOT WORD DO IT FIRST AS PRIORITY ON THIS 
