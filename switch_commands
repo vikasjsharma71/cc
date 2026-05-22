@@ -1616,3 +1616,128 @@ no shutdown
 write memory
 
 
+
+===========================================================================================ADVANCE COMMANDS =======================================================================================================
+ENCRYPTING PASSWORD S
+SERVICE PASSWORD-ENCRYPTION
+
+SETTING DEFAULT GATEWAY 
+IP DEFAULT-GATEWAY 172.168.79.1
+
+It disables DNS lookups on the switch/router.
+NO IP DOMAIN-LOOKUP
+
+DEFINE SSH VERSION 
+IP SSH VERSION 2 
+
+ALIASES SHORTCUT 
+ALIAS EXEC C CONFIG TERMINAL 
+
+INTERFACE FA0/1
+DESCRIPTION LINK TO INTERNET ROUTER 
+SPEED 100
+DUPLEX FULL 
+
+----------------------------
+PORT SECURITY 
+ Make the switch interface as access port:
+ Enable port security on the interface:
+ Specify the maximum number of allowed MAC addresses:
+ Define the action to take when violation occurs:
+ Specify the allowed MAC addresses:
+
+SWITCHPORT MODE ACCESS 
+SWITCHPORT PORT-SECURITY 
+SWITCHPORT PORT-SECURITY MAXIMUM 1 
+SWITCHPORT PORT-SECURITY VIOLATION SHUTDOWN
+SWITCHPORT PORT-SECURITY MAC-ADDRESS [MAC A]
+
+switchport port-security mac-address sticky
+The switch automatically learns the connected device’s MAC address
+-------------------------------------
+CONFIG AN AUXILIARY WLAN FOR CISCO IP PHONES 
+INTERFACE FA0/5
+SWITCHPORT ACCESS VLAN 10 Accessing vlan 10 (data)
+SWITCHPORT VOICE VLAN 12  and 12 (voip)
+
+CONFIG TRUNK 
+INTERFACE FA 0/1
+SWITCHPORT MODE TRUNK 
+SWITCHPORT TRUNK ALLOWED VLAN 10 
+
+
+SECURING VLANS AND TRUNKING 
+ Administratively disable unused interfaces:
+ Prevent trunking by disabling auto negotiation on the
+ Assign the port to an unused VLAN:
+
+SHUTDOWN 
+NONEGOTIATE 
+SWITCHPORT MODE ACCESS 
+SWITCHPORT ACCESS VLAN 22 2
+
+
+STP OPTIMIZATION 
+
+ Hard coding the root bridge (changing bridge priority):
+ Changing the STP mode:
+ Enabling portfast and BPDU guard on an interface:
+ Changing port cost:
+ Bundling interfaces into an etherchannel:
+
+SPANNING-TREE VLAN 1 ROOT PRIMARY 
+SPANNING-TREE VLAN 1 ROOT SECONDARY 
+SPANNING-TREE VLAN 1 PRIORITY 8192
+SPANNING-TREE MODE RAPID-PVST 
+SPANNING-TREE PORTFAST 
+SPANNING-TREE BPDUGUARD ENABLE 
+SPANNING-TREEE VLAN 1 COST 25 
+CHANNEL-GROUP 1 MODE ON 
+
+
+STP VERIFICATION AND TROUBLESHOOT 
+SHOW SPANNING-TREE 
+SHOW SPANNIN-TREE INTERFACE 0/2
+SHOW SPANNING-TREE VLAN 1 
+SHOW SPANNING-TREE VLAN 1 ROOT 
+SHOW SPANNING-TREE VLAN 1 BRIDGE 
+SHOW ETHERCHANNEL 1 
+DEBUG SPANNING0-TREE EVENTS 
+
+SHOW CDP ENTRY* 
+SHOW CDP ENTRY SW2 
+SHOW CDP NEIGHBORS
+SHOW CDP NEIGHBORS DETAILS
+
+
+RIP SECURE
+
+router rip
+ passive-interface default
+ no passive-interface s0/0
+✔ Maximum security
+✔ Only router-to-router communication allowed
+
+        LAN 1                     LAN 2
+   (PCs)                      (PCs)
+      |                          |
+   Fa0/0                      Fa0/1
+      |                          |
+     R1 -------- Serial -------- R2
+              10.0.0.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
