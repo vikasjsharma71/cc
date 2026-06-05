@@ -1728,13 +1728,102 @@ router rip
 
 
 
+---------------------------------------------------------------------------------------VRF VIRTUAL ROUTER FORWARDING-------------------------------------------------------------------------------------------------
+REFER : https://www.youtube.com/watch?v=TUWMr0SjbNk
+REFER : https://www.youtube.com/watch?v=D0IT6ZKY3tg&list=PLDAt-ftayjJ1OGL3UtTh7IhTThyz76HJ2
+REFER : https://www.youtube.com/watch?v=7RtoNTK-mgE&list=PLDAt-ftayjJ1OGL3UtTh7IhTThyz76HJ2&index=6
+
+STEP 1 CREATE VRF 
+IP VRF IBM 
+IP VRF DELL
+
+STEP 2 ADD INTEFACE TO VRF
+INTERFACE ET 0/0 
+IP VRF FORWARDING IBM 
+INTERFACE ET 0/1
+IP VRF FORWARDING DELL 
+
+STEP 3 ASSIGN IP TO THE VRF INT
+INTERFACE ET 0/0 
+IP ADD 13.1.1.1 255.255.255.0
+INTERFACE ET 0/1
+IP ADD	14.1.1.1 255.255.255.0
+
+SHOW IP VRF 
+IT WIL SHOW WHICH INT IS ASSIGN TO WHAT VRF 
+SHOW IP ROUTE
+
+STEP 4 ADD INTERFCE TO VRF 
+INT S2/1 
+IP VRF IBM 
+IP VRF FORWARDING IBM 
+IP ADD
+NO SHU
+INT S2/0 
+IP VRF DELL  
+IP VRF FORWARDING DELL 
+IP ADD
+NO SHU
+
+STEP 5 ADVERTISE ROUTET TO VRF
+
+ROUTER RIP 
+ADDRESS-FAMILT IPV4 VRF IBM 
+VERSION 2 
+NO AUTO-SUMMARY 
+NETWORK 0.0.0.0
 
 
+ROUTER RIP 
+VERSION 2 
+NO AUTO-SUMMARY 
+NETWORK 0.0.0.0 IT MEANS ( Enable RIP on all interfaces that have an IP address. Advertise all directly connected networks through RIP).
+
+ROUTER EIGRP 100
+ADDRESS-FAMILY IPV4 VRF DELL AUTONOUMUS-SYSTEM 100 
+NO AUTO-SUMMARY 
+NETWORK 0.0.0.0 
 
 
+PING 200.1.1.1 SOURCE 10.1.1.1
+=--------------------------------------------------------------------------------QUICK FOLLOW UP --------------------------------------------------------------------------------------------
+																				SHORT COMMAND
 
+CREATE VRF 
+OPEN INTERFACE FORWARD TO PARTICULAR IVR ADD IP NO SHUT EXIT  SIMPLE 
+-----------------------------------------------------------------------------
 
+IP VRF
 
+IP VRF IBM 
+IP VRF DELL
+
+SHOW IP VRF 
+
+INTERFACE ET 0/0 
+IP VRF forwarding IBM 
+IP ADD 13.1.1.1 255.255.255.0
+NO SHU
+
+INTERFACE ET 0/1 
+IP VRF FORWORDING DELL 
+IP ADD 14.1.1.1 255.255.255.0
+NO SHU	
+
+---------------------
+ROUTER RIP 
+VERSION 2 
+NO AUTO-SUMMARY 
+NETWORK 0.0.0.0 
+
+ROUTER EIGRP 100
+ADDRSS-FAMILT IPV4 IVR DELL 
+NO AUTO SUMMARY
+NETOWRK 0.0.0.0
+
+PING 200.1.1.1 SOURCE 10.1.1.1
+
+IP ROUTE VRF IBM NETWORK SUBNET NEXT HOP 
 
 
 
