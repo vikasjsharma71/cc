@@ -1867,48 +1867,7 @@ Transit as
 Router bgp as 
 Redistribution static 
 
-————————————————————————-------------------------------------------------------------
-
-
-Vpc 
-Nexus  vpc | how vPC works 
-https://youtu.be/B6knpmdqJkg?si=Vu0NyWKuaeZ4TicG
-
-Step 
-1 enable feature 
-2 keep-alive-link 
-3 vPC domain 
-4 peer links 
-5 member port 
-6 orphan port 
-
-Configuration 
-Feature vpc 
-Feature  lacp
-Interface mgmt 0/0 
-No shut 
-Ip address /30
-Ping ip vrf mgmt 
-
-Vpc domain 10
-Role priority 10 
-Peer-keepalive destination ip source ip vrf mgmt
-
-Interface range eth 0/1-3
-Description “”vpc peer link “”
- Channel group 15 mode active 
-No shut 
-Int po15 
-Description “” peer link “
-No shu
-Switch port trunk
-Vpc peer-link
-Int etc 1/20
-Channel-group 20 mode active
-No shut 
-Interface port-channel 20 
- Switchport 
- VPc20  
+————————————————————————--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ———————————————————————----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1944,6 +1903,72 @@ Show vrrp 																							|
 Show vrrp brief 																					|
 Debug vrrp events 																					|
 F----------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+																								vPC CONFIGURATION  
+
+Vpc 
+Nexus  vpc | how vPC works 
+https://youtu.be/B6knpmdqJkg?si=Vu0NyWKuaeZ4TicG
+
+Step 
+1 enable feature 
+2 keep-alive-link 
+3 vPC domain 
+4 peer links 
+5 member port  
+6 orphan port 
+
+-------------------------------------------------------------------------------------------------------vPC LACP ACTIVATING ||STEP 1,2-------------------------------------------------------------
+SW1 																												SW2 
+FEATURE vPC																											FEATURE vPC	
+FEATURE LACP 																										FEATURE LACP 
+INT MGMT 0/0 																										INT MGMT 0/0
+NO SHU																												NO SHU	
+IP ADDRE 10.224.102.1/30																							IP ADDRE 10.224.102.2/30
+PING 10.224.102.2 VRF MGMT																							PING 10.224.102.1 VRF MGMT
+EXIT																												EXIT
+-------------------------------------------------------------------------------------------CREATE VPC || DOMAIN PEER-KEEPALIVE || STEP 3 ---------------------------------------------------------
+VPC DOMAIN 10 																										VPC DOMAIN 10 
+ROLE PRIORITY 10 																									ROLE PRIORITY 20 
+PEER-KEEPALIVE DESTINATION 10.224.102.2 SOURCE 10.224.102.1 VRF MGMT 												PEER-KEEPALIVE DESTINATION 10.224.102.1 SOURCE 10.224.102.2 VRF MGMT
+EXIT																												EXIT
+-------------------------------------------------------------------------------------------ETHERCHANNELvPC PEER LINK || STEP 4 ----------------------------------------------------------------
+INTERFACE ETH 1/53-55																								INTERFACE ETH 1/53-55
+DESCRIPTION ""vPC PEER LINK""																						DESCRIPTION ""vPC PEER LINK""
+CHANNEL-GROUP 15 MODE ACTIVE																						CHANNEL-GROUP 15 MODE ACTIVE
+NO SHUT																												NO SHUT	
+SWITCHPORT																											SWITCHPORT
+-------------------------------------------------------------------------------------------ADDING VPC PEER LINK ETHERCHANNEL STEP 5 --------------------------------------------------------------------------
+INT PORT-CHANNEL 15 																								IN PO 15
+DESCRIPTION ""vPC PEER-LINK""																						DESCRIPTION ""vPC PEER LINK ""
+NO SHU																												NO SHU	
+SWITCHPORT																											SWITCHPORT
+SWITCHPORT MODE TRUNK 																								SWITCHPORT MODE TRUNK 
+VPC PEER-LINK 																										VPC PEER LINK 
+SHOW VPC BRIEF 																										SHOW VPC BRIEF 
+-------------------------------------------------------------------------------------------ET-CH VPC ----------------------------------------------------------------------------------------
+INT ET 1/20																											INT ET 1/20 
+NO SHUT 																											NO SHUT 
+SWITCHPORT																											SW
+CHANNEL-GROUP 20 MODE ACTIVE																						CHANNEL-GROUP 20 MODE ACTIVE 
+-----------------------
+INT PO 20 																											INT P0 20 
+SW 																													SW 
+VPC 20 																												VPC 20 
+SHOW VPC BRIEF																										SHOW VPC BRIEF 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
 
 
 —-——————————————————————---------------------------------------------------------------------
