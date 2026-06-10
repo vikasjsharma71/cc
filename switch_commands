@@ -1912,14 +1912,18 @@ Nexus  vpc | how vPC works
 https://youtu.be/B6knpmdqJkg?si=Vu0NyWKuaeZ4TicG
 
 Step 
-1 enable feature 
-2 keep-alive-link 
-3 vPC domain 
-4 peer links 
-5 member port  
-6 orphan port 
+1 ENABLE VPC FEATURE 
+2 CONFIG VPC DOMAIN FOR BOTH NEXUS SW
+3 CONFIG VPC PEER-KEEPALIVE LINK
+4 CONFIG VPC PEER-LINK WHICH WILL CARRY THE TRAFFIC BETWEEN VPC PEERS
+5 MEMBER PORTS INTO VPC 
 
--------------------------------------------------------------------------------------------------------vPC LACP ACTIVATING ||STEP 1,2-------------------------------------------------------------
+
+https://www.youtube.com/watch?v=kOb0r_-26Lw
+VPC IS USED IN WHERE THE LOOP IS FORM TO AVOID THE STP SCENERIO WHICH BLOCK ON PORT IN STP 
+WHAT HAPPEND IN VPC 2 PHYSICAL SWITCH WORK AS A ONE LOGICAL SWITCH 
+
+-------------------------------------------------------------------------------------------------------vPC LACP ACTIVATING ||-------------------------------------------------------------
 SW1 																												SW2 
 FEATURE vPC																											FEATURE vPC	
 FEATURE LACP 																										FEATURE LACP 
@@ -1928,18 +1932,18 @@ NO SHU																												NO SHU
 IP ADDRE 10.224.102.1/30																							IP ADDRE 10.224.102.2/30
 PING 10.224.102.2 VRF MGMT																							PING 10.224.102.1 VRF MGMT
 EXIT																												EXIT
--------------------------------------------------------------------------------------------CREATE VPC || DOMAIN PEER-KEEPALIVE || STEP 3 ---------------------------------------------------------
+-------------------------------------------------------------------------------------------CREATE VPC || DOMAIN PEER-KEEPALIVE || ---------------------------------------------------------
 VPC DOMAIN 10 																										VPC DOMAIN 10 
 ROLE PRIORITY 10 																									ROLE PRIORITY 20 
 PEER-KEEPALIVE DESTINATION 10.224.102.2 SOURCE 10.224.102.1 VRF MGMT 												PEER-KEEPALIVE DESTINATION 10.224.102.1 SOURCE 10.224.102.2 VRF MGMT
 EXIT																												EXIT
--------------------------------------------------------------------------------------------ETHERCHANNELvPC PEER LINK || STEP 4 ----------------------------------------------------------------
+-------------------------------------------------------------------------------------------ETHERCHANNELvPC PEER LINK ||  ----------------------------------------------------------------
 INTERFACE ETH 1/53-55																								INTERFACE ETH 1/53-55
 DESCRIPTION ""vPC PEER LINK""																						DESCRIPTION ""vPC PEER LINK""
 CHANNEL-GROUP 15 MODE ACTIVE																						CHANNEL-GROUP 15 MODE ACTIVE
 NO SHUT																												NO SHUT	
 SWITCHPORT																											SWITCHPORT
--------------------------------------------------------------------------------------------ADDING VPC PEER LINK ETHERCHANNEL STEP 5 --------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------ADDING VPC PEER LINK ETHERCHANNEL  --------------------------------------------------------------------------
 INT PORT-CHANNEL 15 																								IN PO 15
 DESCRIPTION ""vPC PEER-LINK""																						DESCRIPTION ""vPC PEER LINK ""
 NO SHU																												NO SHU	
