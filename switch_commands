@@ -1962,8 +1962,40 @@ SW 																													SW
 VPC 20 																												VPC 20 
 SHOW VPC BRIEF																										SHOW VPC BRIEF 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------MPLS--------------------------------------------------------------------------------------
+MPLS (Multiprotocol Label Switching) is used in computer networks to speed up and manage traffic flow efficiently.
+
+Main uses of MPLS:
+
+1. Faster data routing
+Instead of checking full IP addresses at every router, MPLS uses short labels to forward packets quickly.
+
+2. Traffic engineering
+Helps control the path data takes through a network (not just the shortest path), improving performance and avoiding congestion.
+
+3. VPN services
+Widely used to create secure enterprise networks like:
+MPLS Layer 3 VPNs (connect offices securely over a provider network)
+MPLS Layer 2 VPNs (extend LANs across locations)
+
+4. Better QoS (Quality of Service)
+Prioritizes important traffic like:
+Voice calls (VoIP)
+Video conferencing
+Banking/financial data
+
+5. High reliability and uptime
+Supports fast rerouting if a link fails (traffic engineering + backup paths).
+
+6. Scalable enterprise networking
+Used by large companies and ISPs to connect multiple branches globally.
 
 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+mpls label protocol ldp 
+mpls ldp router-id 1o0 force 
+interface e0/0 
+mpls ip 
 
 
 
@@ -1982,6 +2014,7 @@ Bgp ✔️DONE  																				|
 Vrf ✔️virtual routing forward pending config evng DONE 										|
 Cef																							|
 Vpc  pending config 																		|
+mpls																						|
 ---------------------------------------------------------------------------------------------
 
 
