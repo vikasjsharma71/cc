@@ -1,1 +1,255 @@
+CISCO ASA FIREWALL ( ADAPTIVE SECURITY APPLIANCE )
+
+ROUTER + ACL = ASA
+NAT 
+MPF 
+FAILOVER
+MULTI-CONTEXT
+MISC CONFIG
+
+ACL CREATION 
+ACL IMPLIMENT
+
+
+SECURITY LEVEL 0-100 (HIGH TO LOW =A | HIGH TO HIGH= D)
+LAN 100 
+DMZ 50 
+WAN 0
+
+ASA FIREWALL STATEFULL ( TCP UDP )
+STATEFULL TABLE ONLY CREATED ON THIS TO PROTOCOL ONLY 
+
+STATFULL - ASA PA CP FTD
+STATELESS - ROUTER + ACL  ( PACKET FILTERING )
+-------------------------|
+PACKET FLOW              |
+-------------------------|
+IP                       |
+STATEFULL TABLE          |
+ROUTING                  |
+NAT LOOKUP               |
+ACL                      |
+NAT IMP                  |
+-------------------------
+------------------------------------------------------------------------------------------------------------------CONFIG----------------------------------------------------------------------------------------------------
+EN
+CONFIG TERMINAL
+
+SH INT IP B
+SHO ROUTE 
+SHOW INT GIG 0/0
+
+INTER GIG 0/0 
+IP ADD 
+NAMEIF LAN
+SECURITY-LEVEL 100
+EXIT
+
+SHOW RUNN INT GIG 0/0 
+
+ROUTER RIP 
+VERSION 2 
+NETWORK IP 
+
+ROUTER EIGRP 100
+NETWORK IP WIL
+
+ROUTER OSPF 100
+NETWORK IP MA AREA0 
+
+ROUTER RIP 
+REDISTRIBUTION EIGRP 100 METRIC 1
+REDISTRIBUTION OSPF 100 METRIC 1
+
+ROUTER OSPF 100
+REDISTRIBUTION RIP SUBNET 
+REDISTRIBUTION EIGRP 100 SUBNET 
+
+SHOW INT GIG0/0 SEE WHICH SIDE OF INTERFCE RUNNING EIGRP TO  SEE THE INTERFACE PROPERTY LIKE BANDWITH DELAY MTU RELABILITY LOAD
+ROUTER EIGRP 100
+REDISTRIBUTION RIP METIRC ?
+REDISTRIBUTION OSPF 100 METRIC
+
+DO SHOW ROUTE
+
+SHOW MODULE 
+SHOW VERSION 
+
+CONNECTION VIEW 
+
+SHOW CONN
+SHOW CONN LONG 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ACCESS LIST IMPLEMENTATON   |
+----------------------------
+ACCESS-GROUP IN-ANY IN INTERFCEA LAN 
+ACCESS-GROUP  OUT-ANT IN INTERFACE WAN 
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ACCESS LIST CREATION   |
+-----------------------
+ACCESS-LIST IN-ANY LINE 1 EXTENDED PERMIT TCP HOST IP HOST IP EQ 23
+---------------------------------------------------------------------------------
+PING ACL                                                                         |
+ACCESS-LIST IN-ANY LINE 2 EXTENDED PERMIT ICMP HOST IP HOST IP ECHO              |
+                                                                                 |
+OUT-BOUND ACL                                                                    |
+ACCESS-LIST OUT-ANY LINE 1 EXTENDED PERMIT ICMP HOST IP HOST IP ECHO-RPLY        |
+---------------------------------------------------------------------------------
+
+
+SHOW RUNN ACCESS-LIST 
+SHWO ACCESS-LIST 
+
+--------------------------------------------------------------------------------------------------------OBJECT CREATION --------------------------------------------------------------------------------------------------
+                      OBJECT 
+NETWORK                               SERVICE 
+HOST                                  PROTOCOL
+RANGE                                 PORT NUMBER 
+SUBNET                                SOURCE
+                                      DESTINATION 
+OBJECT-GROUP TYPE 
+ICMP-TYPE 
+NETWORK 
+SERVICE
+PROTOCOL
+SECURITY
+USER
+
+
+
+OBJECT NETWORK RPC 
+HOST IP 
+OBJECT NETWORK WEB
+HOS IP 
+
+ACCEE-LIST IN-ANY LINE 4 EXTENDED PERMIT TCP OBJECT RPC OBJEC WEB EQ 80
+SHOW CONN
+SHOW ACCESS-LIST 
+
+-----------------------------------------
+                      OBJECT GROUP      |
+-----------------------------------------
+OBJECT NETWORK VPC
+HOST IP 
+
+OBJECT NETWORK VPC9 
+HOST IP 
+
+OBJECT NETWORK VPC10 
+HOST IP 
+
+OBJECT-GROUP  NETWORK VPC-GROUP 
+NETWORK-OBJECT OBJECT VPC 
+NETWORK-OBJECT OBJECT VPC9
+NETWORK-OBJECT OBJECT VPC10
+NETWORK-OBJECT HOST 192.168.1.9 (IF FORGOT TO CREATE A OBJECT THEN )
+
+OBJECT SERVICE TELNET
+SERVICE TCP DES EQ 23
+
+OBJECT SERVICE SSH
+SERVICE TCP DES EQ 22
+
+OBJECT-GROUP SERVICE WEBSERVER
+SERVICE-OBJECT OBJECT TELNET
+SERVICE-OBJECT OBJECT SSH
+---------------------------------------------------------------------------------------------
+---------------------
+TIME BASED ACL       |
+---------------------
+TIME 
+TIME-RANGE ?
+TIME-RANGE DIALY 
+PERIODIC ?
+PERIODIC WEEKDAYS 01:00 TO 02:59
+
+ACCESS-LIST IN-ANY LINE 8 EXTENDED PERMIT TCP HOST IP ANY EQ 443 TIME-RANGE DAILY-UPDATE
+
+SHOW ACCESS-LIST IN-ANY | BEGIN LINE 8 
+
+
+
+-------------------------------------------------------------------------------------------------------------NAT ---------------------------------------------------------------------------------------------------------
+ NAT 
+STATIC NAT                        |        DYNAMIC NAT             |                           PAT (NAT+PORT NO)         
+DESTINATION NAT                                                                DYNAMIC PAT --PAT ON INTERFACE IP |--PAT WITH PAT-POOL |--PAT WITH CUSTOM IP           
+POLICY NAT (PORT MATCHING )                                                    STATIC PAT  --PORT FORWARDING     |--PORT REDIRECTION           
+--------
+NAT    |
+-----------------------------------------------------------------------------------------------------STATIC NAT --------------------------------------------------------------------------------------------------------
+STATIC NAT 
+NAT (LAN,WAN) SOURCE STATIC LAN-PC LAN-PUB  1 TO 1
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SHOW NAT 
+SHOW NAT TRANSLATED 
+SHOW XLATE
+
+CLEAR CONFIG NAT 
+
+SHO RUNN NAT 
+----------------------------------------------------------------------------------------------DYNAMIC NAT -----------------------------------------------------------------------------------------------------------------
+DYNAMCI NAT MANY PRI TO MANY PUB
+NAT (LAN,WAN) SOURCE DYNAMIC LAN-NW-PRI LAN-POOL-PUB
+-------------------------------------------------------------------------------------------POLICY NAT (PORT MATCHING )-------------------------------------------------------------------------------------------------------
+NAT (LAN,WAN) SOURCE STATIC PRIV-IP PUB-IP TCP-TELNET TCP-TELNET(PORTNUMBER)
+
+SHOW RUNN NAT 
+-------------------------------------------------------------------------------------------DESTINATION NAT -------------------------------------------------------------------------------------------------------------------
+NAT(LAN,WAN)SOURCE STATIC PRI-PC PUB-PC DESTINATION STATIC REALPUBLIC PRI
+ 
+
+-------------------------------------------------------------------------------------------DYANMIC PAT ------------------------------------------------------------------------------------------------------------------------
+PAT NAT
+MANY PRI TO SINGLE PUBLI 
+
+PAT WITH INTERFACE IP 
+NAT (LAN,WAN) SOURCE DYNAMIC  LAN-NW INTFACE
+
+PAT WITH CUSTOME IP 
+NAT(LAN,WAN)SOURCE DYANIMIC LAN-NW CUSTOME-PAT-IP 
+
+PAT WITH PAT-POOL
+NAT (LAN,WAN) SOURCE DYNAMIC LAN-NW PAT-POOL PUBLIC-POOL
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+OBJECT SERVICE TCP-TELNET-REAL
+SERVICE TCP SOURCE EQ 23 
+OBJECT SERVICE TCP-TELNET-MAPPED
+SERVICE TCP SOURCE EQ 23333
+
+PORT FORWARDING 
+
+NAT (DMZ,WAN) SOURCE STATIC DELL-PRI DELL-PUB SERVICE TCP-TELNET-REAL TCP-TELNET-MAP
+
+ACCESS-LIST OUT-ANY LINE 1 EXTENDED PERMIT TCP ANY HOST PRI-IP  EQ 23 
+ACCESS-GROUP OUT-ANY IN INTERFACE WAN
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+AUTO NAT 
+OBJECT NAT
+OBJECT NETWORK PRIV
+NAT (LAN,WAN) STATIC PUBLIOBJECT 
+SHOW NAT 
+
+
+NAT (LAN,WAN) AFTER-AUTO SOURCE STATIC LAN-MNE CUSOTME-IP
+SHOW RUNN TIMEOUT 
+
+
+================================================================================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
