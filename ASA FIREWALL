@@ -191,8 +191,10 @@ SHO RUNN NAT
 DYNAMCI NAT MANY PRI TO MANY PUB
 NAT (LAN,WAN) SOURCE DYNAMIC LAN-NW-PRI LAN-POOL-PUB
 -------------------------------------------------------------------------------------------POLICY NAT (PORT MATCHING )-------------------------------------------------------------------------------------------------------
-NAT (LAN,WAN) SOURCE STATIC PRIV-IP PUB-IP TCP-TELNET TCP-TELNET(PORTNUMBER)
+NAT (LAN,WAN) SOURCE STATIC PRIV-IP PUB-IP SERVICE TCP-TELNET TCP-TELNET(PORTNUMBER)
 
+OBJECT NETWORK TCP-TELNET
+SERVICE TCP DESTINATION EQ23 
 SHOW RUNN NAT 
 -------------------------------------------------------------------------------------------DESTINATION NAT -------------------------------------------------------------------------------------------------------------------
 NAT(LAN,WAN)SOURCE STATIC PRI-PC PUB-PC DESTINATION STATIC REALPUBLIC PRI
