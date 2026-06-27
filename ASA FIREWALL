@@ -292,11 +292,11 @@ DHCPD ENABLE LAN-2
 
 SHOW DHCPD BINDING
 
-----------------------------FIREWALL DISABLE
+-------------------------------------------------------------------------------------FIREWALL DISABLE---------------------------------------------------------------------------------
 
 ICMP PERMIT ANY ECHO-REPLY LAN-2 
 SHOW NAMEIF 
----------------------------------------MULTI-CONTEXT /SECURITY CONTEXT MEAN DIVIDED FIREWALL 
+---------------------------------------------------------------------------------------MULTI-CONTEXT /SECURITY CONTEXT MEAN DIVIDED FIREWALL -----------------------------------------
 
 AFTER MULTI-CONTEXT
 ROUTING 
@@ -331,7 +331,7 @@ SHOW CONTEXT
 ADMIN-CONTEXT [ADMIN] TO MAKE ONE ADMIN 
 
 
-CHANGE TO CONTEXT WIPRO 
+CHANGETO CONTEXT WIPRO 
 INT ET 0 
 IP ADD 
 NO SHU
@@ -339,14 +339,14 @@ NAMEIF
 SECURIT 
 EXIT
 
-CHANGE TO SYSTEM
+CHANGETO SYSTEM
 I
 NTERFACE ET 0 
 NO SHUT 
 
 INTERFACE ET 2 
 NO SHU  
-B 
+ 
 
 
 
