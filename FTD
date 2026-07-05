@@ -1,0 +1,10 @@
+ASA+NGIPS= FTD FIREPOWER THREAT DEFENCE
+
+SHOW NETWORK 
+SHOW MANAGER
+
+---------GUI
+admin
+Admin123
+ftdv10  4core/ 8gb
+
